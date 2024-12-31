@@ -1,7 +1,42 @@
+<!-- login page -->
 <ion-content>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <div class = "login-card">
+    <ion-card class = "card-title">
+      <ion-card-header>
+        <ion-card-title style = "text-align: center; font-size: 20px;">Login In</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <!-- username -->
+        <ion-item>
+          <ion-label position="floating" >Username</ion-label>
+          <ion-input 
+            placeholder = "Email adrress"
+            type = "email"
+            style= "font-size: small; --placeholder-font-size: 10px; --padding-top: 5px"
+          >
+          </ion-input>
+        </ion-item>
+
+        <!-- pass -->
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input 
+            type = "password"
+            style= "font-size: small"
+          >
+          </ion-input>
+        </ion-item>
+
+      </ion-card-content>
+    
+      <!-- login -->
+      <ion-button expand = "block" color = "tertiary" shape = "round">Login in</ion-button>
+      
+      <ion-button expand = "block" fill="clear" color = "tertiary" shape = "round">Register</ion-button>
+    </ion-card>
+  
+  </div>
+
 </ion-content>
