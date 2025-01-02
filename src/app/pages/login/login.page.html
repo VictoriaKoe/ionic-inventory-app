@@ -1,42 +1,67 @@
 <!-- login page -->
 <ion-content>
-
+  <!-- outer container -->
   <div class = "login-card">
-    <ion-card class = "card-title">
+    <ion-img
+      src = "assets/icon/trackmate_logo.png"
+      alt = "logo"
+    ></ion-img>
+    
+    <!-- login card -->
+    <ion-card class = "card">
       <ion-card-header>
-        <ion-card-title style = "text-align: center; font-size: 20px;">Login In</ion-card-title>
+        <ion-card-title style = "text-align: center; font-size: 20px; ">Sign In</ion-card-title>
       </ion-card-header>
-    
-      <ion-card-content>
-        <!-- username -->
-        <ion-item>
-          <ion-label position="floating" >Username</ion-label>
-          <ion-input 
-            placeholder = "Email adrress"
-            type = "email"
-            style= "font-size: small; --placeholder-font-size: 10px; --padding-top: 5px"
-          >
-          </ion-input>
-        </ion-item>
-
-        <!-- pass -->
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input 
-            type = "password"
-            style= "font-size: small"
-          >
-          </ion-input>
-        </ion-item>
-
-      </ion-card-content>
-    
-      <!-- login -->
-      <ion-button expand = "block" color = "tertiary" shape = "round">Login in</ion-button>
       
-      <ion-button expand = "block" fill="clear" color = "tertiary" shape = "round">Register</ion-button>
-    </ion-card>
-  
-  </div>
+      <ion-card-content>
+        <!-- capture input value, save data-->
+        <form (ngSubmit) = "onSubmit()">
+          <!-- username -->
+          <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input 
+              placeholder = "Email adrress"
+              type = "email"
+              style= "font-size: 15px; --placeholder-font-size: 5px; --padding-top: 17px"
+              [(ngModel)] = "username"
+              [ngModelOptions]="{standalone: true}"
+              required
+            >
+            </ion-input>
+          </ion-item>
 
+          <!-- password -->
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+              <ion-input 
+                type = "password"
+                style= "font-size: 15px"
+                [(ngModel)] = "password"
+                [ngModelOptions]="{standalone: true}"
+                required
+              >
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
+          </ion-item>
+        
+          <!-- login button-->
+          <div class = "login-button">
+            <ion-button expand = "block" shape = "round"  color = "tertiary" style = "width: 50%" type = "submit">Sign In</ion-button>
+          </div>
+        </form>
+
+        <!-- register button -->
+        <ion-text class="ion-text-center">
+          <p>Don't have an account? <a (click) = "onRegister()" style = "color: rgb(168, 106, 255); cursor: pointer;">Sign Up</a></p>
+        </ion-text>
+
+        <!-- forget pass -->
+        <ion-text class="ion-text-center">
+          <p>Forget your password? <a (click) = "forgetPassword()" style = "color: rgb(168, 168, 168); cursor: pointer;" >Forget Password</a></p>
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+  <!-- end outer container -->
+  </div>
+<!-- end ion content -->
 </ion-content>

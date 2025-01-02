@@ -3,9 +3,25 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    flex-direction: column;
 }
 
-.card-title {
-    width: auto; 
+.card{
+    width: 25rem; 
     height: auto;
+    margin: 150 auto; 
 }
+
+.login-button{
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+ion-img {
+    width: 300px;
+    margin-bottom: 50px;
+}
+
+
+
