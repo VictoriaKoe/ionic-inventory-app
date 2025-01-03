@@ -1,0 +1,23 @@
+.app-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+ion-img {
+    // width: 150px; // adjust size as needed
+    animation: fadeInScale 1.5s ease-out;
+}
+
+@keyframes fadeInScale {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+}

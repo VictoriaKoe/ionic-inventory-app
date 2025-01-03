@@ -1,13 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+  <div class = "register-header"> 
+    
+    <!-- registration header -->
+    <ion-text class="ion-text-center">
+      <h1 style = "font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: xx-large; ">Get Started</h1>
+      <p style>Creating a free account</p>
+    </ion-text>
+
+  </div>
+
+  <!-- create registration form, save data to database -->
+  <form (ngSubmit) = "onSubmit()">
+    
+    <!-- username -->
+    <ion-item>
+      <ion-input
+        label = "Outline input"
+        label-placement = "floating"
+        placehoder = "hehe@example.com"
+        fill = "outline"
+        [(ngModel)] = "newUsername"
+        [ngModelOptions]="{standalone: true}"
+      >
+      </ion-input>
+    </ion-item>
+
+    <!-- todo: validate username -->
+
+
+    <!-- password -->
+    <ion-item>
+      <ion-input
+        label = "Outline input"
+        label-placement = "floating"
+        fill = "outline"
+        [(ngModel)] = "newPassword"
+        [ngModelOptions]="{standalone: true}"
+      >
+      </ion-input>
+    </ion-item>
+    
+  </form>
+
+  
+
+
 </ion-content>
