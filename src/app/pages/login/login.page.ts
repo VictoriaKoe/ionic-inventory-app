@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl  } from '@angular/forms';
 // import router
 import { Router } from '@angular/router';
-import { IonInput } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',

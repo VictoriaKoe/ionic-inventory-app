@@ -1,8 +1,14 @@
 <!-- to create loader to load the screen -->
 <ion-content [fullscreen]="true">
   
-  <div class="spinner">
-    <ion-spinner name="crescent" color= "success"></ion-spinner>
+  <div class = "loader">
+    <ion-img
+      src = "assets/icon/app_logo.png"
+      alt = "logo"
+      class ="animate-logo"
+    ></ion-img>
+    
+    <ion-spinner name="crescent" color= "tertiary"></ion-spinner>
   </div>
 
 </ion-content>
