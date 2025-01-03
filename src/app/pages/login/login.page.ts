@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
 
   // route to register form
   onRegister(){
-    this.router.navigate(['/loader']);
+    this.router.navigate(['/register']);
   }
 
   // route to forget password 

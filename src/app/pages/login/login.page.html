@@ -10,7 +10,7 @@
     <!-- login card -->
     <ion-card class = "card">
       <ion-card-header>
-        <ion-card-title style = "text-align: center; font-size: 20px; ">Sign In</ion-card-title>
+        <ion-card-title style = "text-align: center; font-size: 20px; ">Login</ion-card-title>
       </ion-card-header>
       
       <ion-card-content>
@@ -18,9 +18,9 @@
         <form (ngSubmit) = "onSubmit()">
           <!-- username -->
           <ion-item>
-            <ion-label position="floating">Username</ion-label>
+            <!-- <ion-label position="floating">Email Address</ion-label> -->
             <ion-input 
-              placeholder = "Email adrress"
+              placeholder = "Email Address"
               type = "email"
               style= "font-size: 15px; --placeholder-font-size: 5px; --padding-top: 17px"
               [(ngModel)] = "username"
@@ -32,9 +32,10 @@
 
           <!-- password -->
           <ion-item>
-            <ion-label position="floating">Password</ion-label>
+            <!-- <ion-label position="floating">Password</ion-label> -->
               <ion-input 
                 type = "password"
+                placeholder = "Password"
                 style= "font-size: 15px"
                 [(ngModel)] = "password"
                 [ngModelOptions]="{standalone: true}"
@@ -43,6 +44,11 @@
                 <ion-input-password-toggle slot="end"></ion-input-password-toggle>
               </ion-input>
           </ion-item>
+
+          <!-- forget pass -->
+          <ion-text class="ion-text-right">
+            <p> <a (click) = "forgetPassword()" style = "color: rgb(128, 126, 126); cursor: pointer; font-size: 13px" >Forget Password?</a></p>
+          </ion-text>
         
           <!-- login button-->
           <div class = "login-button">
@@ -54,11 +60,7 @@
         <ion-text class="ion-text-center">
           <p>Don't have an account? <a (click) = "onRegister()" style = "color: rgb(168, 106, 255); cursor: pointer;">Sign Up</a></p>
         </ion-text>
-
-        <!-- forget pass -->
-        <ion-text class="ion-text-center">
-          <p>Forget your password? <a (click) = "forgetPassword()" style = "color: rgb(168, 168, 168); cursor: pointer;" >Forget Password</a></p>
-        </ion-text>
+        
       </ion-card-content>
     </ion-card>
   <!-- end outer container -->
