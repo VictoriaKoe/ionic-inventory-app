@@ -1,49 +1,83 @@
 <ion-content [fullscreen]="true">
-  
+  <!-- register page header -->
   <div class = "register-header"> 
-    
-    <!-- registration header -->
     <ion-text class="ion-text-center">
-      <h1 style = "font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: xx-large; ">Get Started</h1>
-      <p style>Creating a free account</p>
+      <h1>Get Started</h1>
+      <p style = "color: var(--ion-color-medium); ">Creating a free account with Stackmate</p>
     </ion-text>
-
   </div>
 
-  <!-- create registration form, save data to database -->
-  <form (ngSubmit) = "onSubmit()">
-    
-    <!-- username -->
-    <ion-item>
+  <!-- register form -->
+  <div class = "form">
+    <!-- create registration form, save data to database -->
+    <form (ngSubmit) = "onSubmit()">
+      
+      <!-- username -->
       <ion-input
-        label = "Outline input"
-        label-placement = "floating"
-        placehoder = "hehe@example.com"
+        placeholder = "Username"
         fill = "outline"
         [(ngModel)] = "newUsername"
         [ngModelOptions]="{standalone: true}"
       >
+        <ion-icon aria-hidden = "true" name = "person-outline" slot = "start"></ion-icon>
       </ion-input>
-    </ion-item>
 
-    <!-- todo: validate username -->
+      <!-- todo: validate username -->
+      
+      <br/>
 
-
-    <!-- password -->
-    <ion-item>
+      <!-- email -->
       <ion-input
-        label = "Outline input"
-        label-placement = "floating"
+        placeholder = "Email"
         fill = "outline"
+        type = "email"
+        [(ngModel)] = "newEmail"
+        [ngModelOptions]="{standalone: true}"
+      >
+        <ion-icon aria-hidden = "true" name = "mail-outline" slot = "start"></ion-icon>
+      </ion-input>
+
+      <!-- todo: validate email -->
+
+      <br/>
+
+      <!-- password -->
+      <ion-input
+        placeholder = "Password"
+        fill = "outline"
+        type = "password"
         [(ngModel)] = "newPassword"
         [ngModelOptions]="{standalone: true}"
       >
+        <ion-icon aria-hidden = "true" name = "lock-closed-outline" slot = "start"></ion-icon>
       </ion-input>
-    </ion-item>
-    
-  </form>
 
-  
+      <!-- todo: validate pass -->
 
+      <br/>
 
+      <!-- retype pass -->
+      <ion-input
+        placeholder = "Retype Password"
+        fill = "outline"
+        type = "password"
+        [(ngModel)] = "retypePassword"
+        [ngModelOptions]="{standalone: true}"
+      >
+        <ion-icon aria-hidden = "true" name = "lock-closed-outline" slot = "start"></ion-icon>
+      </ion-input>
+
+      <!-- todo: validate retype pass -->
+
+      <br/>
+
+      <!-- terms and condition -->
+      <ion-checkbox label-placement = "end">By signing up, you agree to our <a href = "#" (click)="$event.stopPropagation()">Terms Policy</a></ion-checkbox>
+      
+      <!-- todo: validate t&c -->
+      
+      <!-- submit form-->
+      <ion-button expand = "block" shape = "round" type = "submit">Sign In</ion-button>
+    </form>
+  </div>
 </ion-content>
