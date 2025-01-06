@@ -24,6 +24,8 @@ export class LoginPage implements OnInit {
   // action after clicking sign in button
   onSubmit(){
     console.log(this.username, this.password);
+    // todo
+    
     // route to main page
     this.router.navigate(['/loader']);
   }
