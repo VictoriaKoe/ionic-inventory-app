@@ -10,19 +10,23 @@
   <!-- register form -->
   <div class = "form">
     <!-- create registration form, save data to database -->
-    <form (ngSubmit) = "onSubmit()">
+    <form [formGroup] = "register_form" (ngSubmit) = "onSubmit()" >
       
       <!-- username -->
       <ion-input
         placeholder = "Username"
         fill = "outline"
-        [(ngModel)] = "newUsername"
-        [ngModelOptions]="{standalone: true}"
+        formControlName= "newUsername"
       >
         <ion-icon aria-hidden = "true" name = "person-outline" slot = "start"></ion-icon>
       </ion-input>
 
       <!-- todo: validate username -->
+      <ng-container *ngFor="let validation of error_message.newUsername">
+        <div class="error-message" *ngIf="isValid('newUsername', validation.type)">
+          <ion-icon name="information-circle-outline" aria-hidden = "true"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
       
       <br/>
 
@@ -31,13 +35,17 @@
         placeholder = "Email"
         fill = "outline"
         type = "email"
-        [(ngModel)] = "newEmail"
-        [ngModelOptions]="{standalone: true}"
+        formControlName = "newEmail"
       >
         <ion-icon aria-hidden = "true" name = "mail-outline" slot = "start"></ion-icon>
       </ion-input>
 
       <!-- todo: validate email -->
+      <ng-container *ngFor="let validation of error_message.newEmail">
+        <div class="error-message" *ngIf="isValid('newEmail', validation.type)">
+          <ion-icon name="information-circle-outline" aria-hidden = "true"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
 
       <br/>
 
@@ -46,13 +54,17 @@
         placeholder = "Password"
         fill = "outline"
         type = "password"
-        [(ngModel)] = "newPassword"
-        [ngModelOptions]="{standalone: true}"
+        formControlName = "newPassword"
       >
         <ion-icon aria-hidden = "true" name = "lock-closed-outline" slot = "start"></ion-icon>
       </ion-input>
 
       <!-- todo: validate pass -->
+      <ng-container *ngFor="let validation of error_message.newPassword">
+        <div class="error-message" *ngIf="isValid('newPassword', validation.type)">
+          <ion-icon name="information-circle-outline" aria-hidden = "true"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
 
       <br/>
 
@@ -61,23 +73,32 @@
         placeholder = "Retype Password"
         fill = "outline"
         type = "password"
-        [(ngModel)] = "retypePassword"
-        [ngModelOptions]="{standalone: true}"
+        formControlName = "retypePassword"
       >
         <ion-icon aria-hidden = "true" name = "lock-closed-outline" slot = "start"></ion-icon>
       </ion-input>
 
       <!-- todo: validate retype pass -->
+      <ng-container *ngFor="let validation of error_message.newPassword">
+        <div class="error-message" *ngIf="isValid('newPassword', validation.type)">
+          <ion-icon name="information-circle-outline" aria-hidden = "true"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
 
       <br/>
 
       <!-- terms and condition -->
-      <ion-checkbox label-placement = "end">By signing up, you agree to our <a href = "#" (click)="$event.stopPropagation()">Terms Policy</a></ion-checkbox>
+      <ion-checkbox label-placement = "end">By signing up, you agree to our <a href = "/" (click)="$event.stopPropagation()">Terms Policy</a></ion-checkbox>
       
       <!-- todo: validate t&c -->
+      <ng-container *ngFor="let validation of error_message.terms">
+        <div class="error-message" *ngIf="isValid('terms', validation.type)">
+          <ion-icon name="information-circle-outline" aria-hidden = "true"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
       
       <!-- submit form-->
-      <ion-button expand = "block" shape = "round" type = "submit">Sign In</ion-button>
+      <ion-button expand = "block" shape = "round" type = "submit" [disabled] = '!register_form.valid'>Sign In</ion-button>
     </form>
   </div>
 </ion-content>
