@@ -14,7 +14,7 @@
       
       <!-- username -->
       <ion-input
-        placeholder = "Username"
+        placeholder = "Username *"
         fill = "outline"
         formControlName= "newUsername"
       >
@@ -32,7 +32,7 @@
 
       <!-- email -->
       <ion-input
-        placeholder = "Email"
+        placeholder = "Email *"
         fill = "outline"
         type = "email"
         formControlName = "newEmail"
@@ -51,7 +51,7 @@
 
       <!-- password -->
       <ion-input
-        placeholder = "Password"
+        placeholder = "Password *"
         fill = "outline"
         type = "password"
         formControlName = "newPassword"
@@ -70,7 +70,7 @@
 
       <!-- retype pass -->
       <ion-input
-        placeholder = "Retype Password"
+        placeholder = "Confirm Password *"
         fill = "outline"
         type = "password"
         formControlName = "retypePassword"
@@ -79,16 +79,22 @@
       </ion-input>
 
       <!-- todo: validate retype pass -->
-      <ng-container *ngFor="let validation of error_message.newPassword">
-        <div class="error-message" *ngIf="isValid('newPassword', validation.type)">
+      <ng-container *ngFor="let validation of error_message.retypePassword">
+        <div class="error-message" *ngIf="isValid('retypePassword', validation.type)">
           <ion-icon name="information-circle-outline" aria-hidden = "true"></ion-icon> {{ validation.message }}
         </div>
       </ng-container>
 
+      <!-- <ng-container *ngFor="let validation of error_message.matching_passwords"> -->
+      <div class="error-message" *ngIf="isPasswordInvalid()">
+        <ion-icon name="information-circle-outline" aria-hidden = "true"></ion-icon> Password mismatch.
+      </div>
+      <!-- </ng-container> -->
+
       <br/>
 
       <!-- terms and condition -->
-      <ion-checkbox label-placement = "end">By signing up, you agree to our <a href = "/" (click)="$event.stopPropagation()">Terms Policy</a></ion-checkbox>
+      <ion-checkbox label-placement = "end" formControlName = "terms">By signing up, you agree to our <a href = "/" (click)="$event.stopPropagation()">Terms Policy</a></ion-checkbox>
       
       <!-- todo: validate t&c -->
       <ng-container *ngFor="let validation of error_message.terms">

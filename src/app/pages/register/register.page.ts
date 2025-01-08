@@ -17,7 +17,7 @@ import { PasswordValidator } from '../..//validators/password_validator';
 export class RegisterPage implements OnInit {
 
   register_form: FormGroup;
-  matching_password: FormGroup;
+  // matching_password_group: FormGroup;
 
   // connect db
 
@@ -40,17 +40,19 @@ export class RegisterPage implements OnInit {
 
     'newPassword': [
       {type: 'required', message: 'Password is required. '},
-      {type: 'minlength', message: 'Your password must contain at ' + 
+      {type: 'pattern', message: 'Your password must contain at ' + 
         'least one uppercase, one lowercase and one number. '},
+      {type: 'minlength', message: 'Your password must be at least 5 characters long. '}
     ],
 
     'retypePassword': [
-      {type: 'required', message: 'Confirm assword is required. '}
+      {type: 'required', message: 'Confirm password is required. '},
+      // {type: 'isPasswordMatched', message: 'Password mismatch. '}
     ],
 
-    'matching_passwords': [
-      {type: 'areEqual', message: 'Password mismatch. '}
-    ],
+    // 'matching_passwords': [
+    //   {type: 'isPasswordMatched', message: 'Password mismatch. '}
+    // ],
 
     'terms': [
       {type: 'pattern', message: 'Your must accept the terms and conditions'},
@@ -60,8 +62,8 @@ export class RegisterPage implements OnInit {
   // initialise val
   constructor(private navCtrl: NavController, private formBuilder: FormBuilder) { 
     this.formBuilder = formBuilder;
+    // this.matching_password_group = this.initialisePassword();
     this.register_form = this.initialiseRegisterForm();
-    this.matching_password = this.initialisePassword();
   }
 
   ngOnInit() {
@@ -91,37 +93,70 @@ export class RegisterPage implements OnInit {
       ])),
 
       // password
-      matching_passwords: this.matching_password,
-      
+      newPassword: new FormControl('', Validators.compose([
+        Validators.required, // required to fill
+        // email pattern 
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+        Validators.minLength(5)
+      ])),
+
+      // retype password 
+      // retypePassword: ['', Validators.required, {validators: PasswordValidator.isMatched}],
+      retypePassword: new FormControl('', {
+        validators: [
+          Validators.required,
+          PasswordValidator.isMatched
+        ]
+      }),
+
       // terms policy 
       terms: new FormControl(true, Validators.pattern('true'))
-    });
+  });
   }
 
   // initialise password form group 
-  private initialisePassword () {
+  // private initialisePassword () {
     
-    return this.formBuilder.group (
-    {
-      newPassword: new FormControl('', Validators.compose(
-      [
-        Validators.minLength(5),
-        Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
-      ])),
-      retypePassword: new FormControl('', Validators.required),
-    }
-    );
-
-  }
+  //   return this.formBuilder.group (
+  //   {
+  //     newPassword: new FormControl('', 
+  //     [
+  //       Validators.minLength(5),
+  //       Validators.required,
+  //       Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+  //     ],
+  //   ), 
+  //     retypePassword: new FormControl('',Validators.required)
+  //   }, 
+  //   {
+  //     validators: PasswordValidator.isMatched
+  //   });
+  // }
 
   // validation method
-  isValid (fieldName: string, validationType: string): Boolean  {
-    const usernameControl = this.register_form.get(fieldName);
+  isValid (fieldName: string, validationType: string): boolean  {
+    const fieldControl = this.register_form.get(fieldName);
 
     // !!- non-null assertion
-    return !!usernameControl?.hasError(validationType) && 
-          (usernameControl?.dirty || usernameControl?.touched);
+    return !!fieldControl?.hasError(validationType) && 
+          (fieldControl?.dirty || fieldControl?.touched);
+  }
+
+  // get matchingPasswords() {
+  //   return this.register_form.get('matching_passwords');
+  // }
+
+  // get newPasswordControl() {
+  //   return this.register_form.get('newPassword');
+  // }
+
+  get retypePasswordControl() {
+    return this.register_form.get('retypePassword');
+  }
+
+  isPasswordInvalid(): boolean {
+    return !!this.retypePasswordControl?.hasError('isPasswordMatched') && 
+           (this.retypePasswordControl?.dirty || this.retypePasswordControl?.touched);
   }
 
   // submit register form 

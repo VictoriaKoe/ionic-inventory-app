@@ -4,7 +4,6 @@
     height: 30%;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 10px;
 }
 
 ion-input {
@@ -16,6 +15,7 @@ ion-input {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 h1{
@@ -34,6 +34,6 @@ ion-checkbox {
 }
 
 .error-message{
-    margin-top: 3px;
+    margin: 3px;
     color: red;
 }
