@@ -4,11 +4,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   
   // redirect path
-  // {
-  //   path: '',
-  //   redirectTo: '',
-  //   pathMatch: 'full' // tells the router how to match the URL.
-  // },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full' // tells the router how to match the URL.
+  },
 
   // welcome page (load the app)
   {
@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: '**',
     loadChildren: () => import('./pages/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
+  },
+  {
+    path: 'user-profile',
+    loadChildren: () => import('./pages/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   },
 ];
 

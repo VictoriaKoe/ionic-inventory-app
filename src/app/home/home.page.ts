@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { addIcons } from 'ionicons';
+import { library, playCircle, radio, search } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +10,8 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor() {
+    addIcons({ library, playCircle, radio, search });
+  }
 
 }
