@@ -6,7 +6,7 @@ const routes: Routes = [
   // redirect path
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'welcomepage',
     pathMatch: 'full' // tells the router how to match the URL.
   },
 
@@ -39,15 +39,24 @@ const routes: Routes = [
     loadChildren: () => import('./pages/loader/loader.module').then( m => m.LoaderPageModule)
   },
 
+  // user profile 
+  {
+    path: 'user-profile',
+    loadChildren: () => import('./pages/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
+  },
+
+  // tabs
+  {
+    path: '',
+    loadChildren: () => import('./components/tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+
   // page not found 404, wildcard router
   {
     path: '**',
     loadChildren: () => import('./pages/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },
-  {
-    path: 'user-profile',
-    loadChildren: () => import('./pages/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
-  },
+  
 ];
 
 @NgModule({
