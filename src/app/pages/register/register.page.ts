@@ -33,6 +33,11 @@ export class RegisterPage implements OnInit {
       {type: 'validUsername', message: 'Your username has already been taken. '}
     ],
 
+    'newName' : [
+      {type: 'required', message: 'Username is required. '},
+      {type: 'pattern', message: 'Name must only contain letters. '},
+    ],
+
     'newEmail': [
       {type: 'required', message: 'Email is required. '},
       {type: 'pattern', message: 'Enter a valid email. '}
@@ -82,6 +87,13 @@ export class RegisterPage implements OnInit {
         Validators.minLength(3),
         // username pattern 
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z]||[0-9]+$'),
+        Validators.required
+      ])),
+
+      // user name
+      newName: new FormControl('', Validators.compose([
+        // username pattern 
+        Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z]+$'),
         Validators.required
       ])),
 

@@ -30,6 +30,24 @@
       
       <br/>
 
+      <!-- name -->
+      <ion-input
+      placeholder = "Name *"
+      fill = "outline"
+      formControlName= "newName"
+      >
+        <ion-icon aria-hidden = "true" name = "person-outline" slot = "start"></ion-icon>
+      </ion-input>
+      
+      <!-- todo: validate name -->
+      <ng-container *ngFor="let validation of error_message.newName">
+        <div class="error-message" *ngIf="isValid('newName', validation.type)">
+          <ion-icon name="information-circle-outline" aria-hidden = "true"></ion-icon> {{ validation.message }}
+        </div>
+      </ng-container>
+      
+      <br/>
+
       <!-- email -->
       <ion-input
         placeholder = "Email *"
