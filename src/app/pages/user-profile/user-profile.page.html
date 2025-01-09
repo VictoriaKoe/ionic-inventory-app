@@ -1,13 +1,100 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>userProfile</ion-title>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">userProfile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-margin-top">
+  
+  <div class = "user-container">
+
+    <!-- todo: profile icon-->
+    <div style = "padding: 2% 40%; position: relative"> 
+      
+      <ion-avatar>
+        <img alt="profile" [src]= "profilePhoto" />
+      </ion-avatar>
+      
+      <!-- todo: change icon -->
+      <ion-icon 
+        slot="end" 
+        name="pencil-outline"
+        color = primary
+        style="position: absolute; margin-left: 45px; font-size: 25px; bottom: 2%"
+        ></ion-icon>
+
+    </div>
+
+    <!-- user info -->
+    <div class="ion-margin" style = "justify-content: space-between; align-items: center; display: flex; ">
+
+      <h5 class = "ion-no-margin">
+        My Profile  
+      </h5>
+
+      <!-- primary for ios: right -->
+      <ion-buttons slot="primary" > 
+        <ion-button (click) = "editProfile()">
+          Edit
+          <ion-icon slot="end" name="create"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+    </div>
+
+    <ion-card>
+
+      <ion-card-content>
+
+        <!-- username -->
+        <div>
+          <ion-label>Username</ion-label>
+          <!-- render username -->
+          <p> {{username}}</p>
+        </div>
+         
+        <br/>
+
+        <!-- name -->
+        <div>
+          <ion-label>Name</ion-label>
+          <!-- render email -->
+          <p> {{name}}</p>
+        </div>
+
+        <br/>
+
+        <!-- tbc: pronoun -->
+        <div>
+          <ion-label>Pronoun</ion-label>
+          <!-- default no val -->
+          <!-- edit pronoun/gender -->
+          <div style = "justify-content: space-between; padding-left: 2px;">
+            <p> {{pronoun}}</p>
+          </div>
+        </div>
+
+        <br/>
+
+        <!-- email -->
+        <div>
+          <ion-label>Personal Email</ion-label>
+          <!-- render email -->
+          <p> {{email}}</p>
+        </div>
+
+        <br/>
+        
+        <!-- password -->
+        <div>
+          <ion-label>Password</ion-label>
+          <!-- render password -->
+          <p> {{password}}</p>
+        </div>
+      
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
 </ion-content>

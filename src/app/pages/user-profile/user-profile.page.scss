@@ -1,0 +1,21 @@
+.user-container{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+ion-card {
+    --background:#e9d5fe;
+    --color: black;
+}
+
+ion-label {
+    font-size: 17px;
+    font-weight: 200;
+}
+
+p{
+    color: var(--ion-color-medium-shade);
+    font-size: 16px;
+}
+
