@@ -16,7 +16,7 @@ export class WelcomePagePage implements OnInit {
     // Navigate to home page after animation
     setTimeout(() => {
       //navigation logic 
-      this.router.navigate(['\home'])
+      this.router.navigate(['\login'])
     }, 5000);
   }
 
