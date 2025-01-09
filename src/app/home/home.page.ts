@@ -11,7 +11,6 @@ import { library, playCircle, radio, search } from 'ionicons/icons';
 export class HomePage {
 
   constructor() {
-    addIcons({ library, playCircle, radio, search });
   }
 
 }
