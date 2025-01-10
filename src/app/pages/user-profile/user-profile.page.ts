@@ -11,13 +11,18 @@ export class UserProfilePage implements OnInit {
 
   // declare var
 
-  // dummy data
+  // dummy data, get from db
   username: string = 'Vic'; 
   email: string = 'vic@gmail.com';
   password: string = '12345';
   name: string = "Rui En";
+
+  // default val 
   pronoun: any = '-';
   profilePhoto: any = "https://ionicframework.com/docs/img/demos/avatar.svg";
+  profileArray: any = [];
+
+  showPassword: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -28,6 +33,13 @@ export class UserProfilePage implements OnInit {
     //   "Female"
     // ];
 
+    // dummy one
+    this.profileArray.push(2);
+    console.log(this.profileArray);
+
+    // get data from database
+
+
   }
 
   // go to edit profile form 
@@ -36,4 +48,21 @@ export class UserProfilePage implements OnInit {
     this.router.navigate(['/editProfile']);
   }
 
+  // toogle pasword visibilty
+  toggleVisibilityPassword () {
+    
+    // toogle password visibility
+    this.showPassword = !this.showPassword;
+  }
+
+  // mask the password
+  maskPassword (password: string): string {
+    return '*'.repeat(password.length); // repeat * 
+  }
+
+  // edit profile photo
+  editProfilePhoto() {
+  
+    
+  }
 }
