@@ -6,8 +6,12 @@ import {
   IonButtons,
   IonMenuButton, 
   IonButton, 
-  IonIcon
+  IonIcon,
+  IonMenu, 
+  IonContent, 
+  IonMenuToggle
 } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -20,15 +24,25 @@ import {
     IonButton, 
     IonButtons, 
     IonMenuButton,
-    IonIcon
+    IonIcon,
+    IonMenu,
+    IonContent,
+    IonMenuToggle
   ],
 })
-export class NavigationBarComponent  implements OnInit {
+export class NavigationBarComponent implements OnInit {
 
   @Input() name?: string;
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {}
+
+  // redirect to user profile pg
+  toUserProfile() {
+    this.route.navigate(['user-profile']);
+  }
+
+  // set navigation 
 
 }
