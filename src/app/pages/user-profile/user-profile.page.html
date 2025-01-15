@@ -1,18 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-navigation-bar name = "Profile"></app-navigation-bar>
 
 <ion-content [fullscreen]="true" class="ion-margin-top">
   
   <div class = "user-container">
 
     <!-- todo: profile icon-->
-    <div style = "padding: 2% 40%; position: relative"> 
+    <div class = "profile"> 
       
       <ion-avatar>
-        <img alt="profile" [src]= "profilePhoto" />
+        <img alt="profile" [src]= "profilePhoto" style = "border-radius: 50%; margin-top: 2px;" />
       </ion-avatar>
       
       <!-- todo: change icon button ?-->
@@ -25,8 +21,9 @@
           slot = "icon-only" 
           name = "pencil-outline"
           color = "primary"
-          (click) = "editProfilePhoto()"
-          style = "position: absolute; margin-left: 47px; font-size: 25px; bottom: 5%; cursor: pointer;"
+          (click) = "editProfilePhoto($event)"
+
+          style = "position: absolute; margin-left: 50px; font-size: 27px; bottom: 6%; cursor: pointer;"
           ></ion-icon>
       <!-- </ion-button> -->
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PopoverController } from '@ionic/angular';
+import { UserProfilePopoverComponent } from 'src/app/components/user-profile-popover/user-profile-popover.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -20,11 +22,10 @@ export class UserProfilePage implements OnInit {
   // default val 
   pronoun: any = '-';
   profilePhoto: any = "https://ionicframework.com/docs/img/demos/avatar.svg";
-  profileArray: any = [];
 
   showPassword: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private popoverCtrl: PopoverController) { }
 
   ngOnInit() {
 
@@ -33,11 +34,7 @@ export class UserProfilePage implements OnInit {
     //   "Female"
     // ];
 
-    // dummy one
-    this.profileArray.push(2);
-    console.log(this.profileArray);
-
-    // get data from database
+    // get actual data from database
 
 
   }
@@ -61,8 +58,33 @@ export class UserProfilePage implements OnInit {
   }
 
   // edit profile photo
-  editProfilePhoto() {
-  
-    
+  async editProfilePhoto(event: any) {
+
+    const popover = await this.popoverCtrl.create({
+      component: UserProfilePopoverComponent,
+      event: event,
+      translucent: true,
+      dismissOnSelect: true,
+      arrow: true,
+      backdropDismiss: true,
+      cssClass: 'avatar-popover'
+    });
+
+    await popover.present();
+
+    const { data } = await popover.onDidDismiss(); // get data when popover dismiss
+
+    if (data) {
+
+      // render profile photo 
+      this.profilePhoto = data;
+
+      // todo: save to db
+
+
+    }
+
+
   }
+
 }

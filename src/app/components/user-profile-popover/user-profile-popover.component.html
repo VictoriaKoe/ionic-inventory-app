@@ -1,0 +1,23 @@
+<ion-content>
+
+    <ion-grid>
+      <ion-row>
+        <ng-container *ngFor="let avatar of defaultAvatars; let i = index">
+          <ion-col size="4">
+            <button
+                class="avatar-container" 
+                (click)="selectAvatar(avatar)"
+                [attr.aria-label]="'Select avatar ' + (i + 1)"
+                [attr.aria-pressed]="selectedAvatar === avatar"
+                role="button"
+                [attr.aria-checked]="selectedAvatar === avatar"
+              >
+                <img [src]="avatar" [alt]="'Avatar option ' + (i + 1)">
+            </button>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+
+</ion-content>
+
