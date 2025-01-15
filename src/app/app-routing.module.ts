@@ -51,11 +51,19 @@ const routes: Routes = [
     loadChildren: () => import('./components/tabs/tabs.module').then( m => m.TabsPageModule)
   },
 
+  // add item page
+  {
+    path: 'add-item',
+    loadChildren: () => import('./pages/add-item/add-item.module').then( m => m.AddItemPageModule)
+  },
+
   // page not found 404, wildcard router
   {
     path: '**',
     loadChildren: () => import('./pages/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },
+
+ 
   
 ];
 

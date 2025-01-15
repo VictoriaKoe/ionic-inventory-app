@@ -15,8 +15,8 @@ const routes: Routes = [
       },
 
       {
-        path: 'add',
-        loadChildren: () => import('../../home/home.module').then( m => m.HomePageModule)
+        path: 'add-item',
+        loadChildren: () => import('../../pages/add-item/add-item.module').then( m => m.AddItemPageModule)
       },
 
       {
