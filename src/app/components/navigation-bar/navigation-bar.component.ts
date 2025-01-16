@@ -1,33 +1,26 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { 
   IonHeader, 
-  IonTitle, 
   IonToolbar, 
   IonButtons,
   IonMenuButton, 
   IonButton, 
-  IonIcon,
-  IonMenu, 
-  IonContent, 
-  IonMenuToggle
+  IonIcon
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
   styleUrls: ['./navigation-bar.component.scss'],
   imports: [
-    IonHeader, 
-    IonTitle, 
+    IonHeader,  
     IonToolbar, 
     IonButton, 
     IonButtons, 
     IonMenuButton,
-    IonIcon,
-    IonMenu,
-    IonContent,
-    IonMenuToggle
+    IonIcon
   ],
 })
 export class NavigationBarComponent implements OnInit {
@@ -42,7 +35,5 @@ export class NavigationBarComponent implements OnInit {
   toUserProfile() {
     this.route.navigate(['user-profile']);
   }
-
-  // set navigation 
 
 }
