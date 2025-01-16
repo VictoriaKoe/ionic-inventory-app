@@ -24,10 +24,11 @@ export class LoginPage implements OnInit {
   // action after clicking sign in button
   onSubmit(){
     console.log(this.username, this.password);
-    // todo
+    // todo: validate from db
+
     
     // route to main page
-    this.router.navigate(['/loader']);
+    this.router.navigate(['/home']);
   }
 
   // route to register form
@@ -37,7 +38,7 @@ export class LoginPage implements OnInit {
 
   // route to forget password 
   forgetPassword() {
-    this.router.navigate(['']);
+    this.router.navigate(['/']);
   }
 
 }
