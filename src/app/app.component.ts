@@ -7,5 +7,19 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
+
+  username: string = "";
+
+  public appPages = [
+    { title: 'Home', url: '/home', icon: 'home' },
+    { title: 'Items', url: '/home', icon: 'cube' },
+    { title: 'Categories', url: '/home', icon: 'shapes'},
+    { title: 'User Profile', url: 'user-profile', icon: 'person-circle'},
+    // settings 
+    // { title: 'Settings', url: '', icon: 'settings'} 
+    // order
+  ];
+
   constructor() {}
+
 }
