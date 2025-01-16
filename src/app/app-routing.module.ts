@@ -17,10 +17,10 @@ const routes: Routes = [
   },
 
   // home page
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  // },
 
   // login page
   {
@@ -63,8 +63,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },
 
- 
-  
 ];
 
 @NgModule({

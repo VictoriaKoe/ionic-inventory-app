@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { UserProfilePopoverComponent } from 'src/app/components/user-profile-popover/user-profile-popover.component';
+import { ModalController } from '@ionic/angular';
+import { UserProfileModalComponent } from 'src/app/components/user-profile-modal/user-profile-modal.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -23,9 +25,10 @@ export class UserProfilePage implements OnInit {
   pronoun: any = '-';
   profilePhoto: any = "https://ionicframework.com/docs/img/demos/avatar.svg";
 
+  // toogle pass
   showPassword: boolean = false;
 
-  constructor(private router: Router, private popoverCtrl: PopoverController) { }
+  constructor(private router: Router, private popoverCtrl: PopoverController, private modalCtrl: ModalController) { }
 
   ngOnInit() {
 
@@ -61,6 +64,7 @@ export class UserProfilePage implements OnInit {
   async editProfilePhoto(event: any) {
 
     const popover = await this.popoverCtrl.create({
+      // create popover
       component: UserProfilePopoverComponent,
       event: event,
       translucent: true,
@@ -70,21 +74,38 @@ export class UserProfilePage implements OnInit {
       cssClass: 'avatar-popover'
     });
 
+    // show popover
     await popover.present();
 
-    const { data } = await popover.onDidDismiss(); // get data when popover dismiss
+    // get data when popover dismiss
+    const { data } = await popover.onDidDismiss(); 
 
     if (data) {
-
       // render profile photo 
       this.profilePhoto = data;
 
       // todo: save to db
-
-
     }
-
-
   }
 
+  async openEditProfile() {
+    // create modal 
+    const modal = await this.modalCtrl.create ({
+      component: UserProfileModalComponent,
+      componentProps: {
+        currentPhoto: this.profilePhoto
+      }
+    });
+
+    // show modal
+    modal.present();
+
+    // get data from modal controller
+    const {data, role} = await modal.onWillDismiss();
+
+    // render photo
+    if (role == 'save') {
+      this.profilePhoto = data.photo;
+    }
+  }
 }
