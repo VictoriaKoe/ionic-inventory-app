@@ -4,9 +4,22 @@
     <ion-menu contentId="main-content" type="overlay">
       
       <ion-content>
+        
+        <ion-list id = "profile-list">
+          <ion-list-header>Welcome {{username}}!</ion-list-header>
+
+          <!-- profile -->
+            <ion-avatar>
+              <img alt="profile" [src]= "profilePhoto" style = "border-radius: 50%; margin-top: 2px;"/>
+            </ion-avatar>
+<!-- 
+            <h5 style = "padding: 2px; translate: 15px 0px;">
+              
+            </h5> -->
+
+        </ion-list>
+        
         <ion-list id="menu-list">
-          <ion-list-header>Welcome to Trackmate</ion-list-header>
-  
           <!-- loop app pages -->
           @for (p of appPages; track p; let i = $index) {
             <ion-menu-toggle auto-hide="false">
@@ -17,7 +30,16 @@
             </ion-menu-toggle>
           }
         </ion-list>
+
       </ion-content>
+
+      <!-- footer -->
+      <ion-footer class="ion-no-border">
+          <p style = "font-family: cursive; padding-left: 2px;">
+            Trackmate, your good tracking mate!
+          </p>
+      </ion-footer>
+
     </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>

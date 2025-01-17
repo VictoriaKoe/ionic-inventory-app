@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,20 +6,30 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
   standalone: false,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  username: string = "";
+  // default/dummy val
+  username: string = "Vic";
+  profilePhoto: string | null = "https://ionicframework.com/docs/img/demos/avatar.svg";
+
 
   public appPages = [
     { title: 'Home', url: '/home', icon: 'home' },
     { title: 'Items', url: '/home', icon: 'cube' },
     { title: 'Categories', url: '/home', icon: 'shapes'},
-    { title: 'User Profile', url: 'user-profile', icon: 'person-circle'},
-    // settings 
-    // { title: 'Settings', url: '', icon: 'settings'} 
+    { title: 'Profile', url: 'user-profile', icon: 'person-circle'},
+    // empty pages
+    { title: 'Terms & Policy', url: '/', icon: 'document-text'},
+    { title: 'Settings', url: '', icon: 'settings'}
     // order
   ];
 
   constructor() {}
+
+  ngOnInit() {
+
+    // get profile from db (photo & username)
+    
+  }
 
 }
