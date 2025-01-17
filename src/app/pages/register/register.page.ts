@@ -34,7 +34,7 @@ export class RegisterPage implements OnInit {
     ],
 
     'newName' : [
-      {type: 'required', message: 'Username is required. '},
+      {type: 'required', message: 'Your name is required. '},
       {type: 'pattern', message: 'Name must only contain letters. '},
     ],
 
