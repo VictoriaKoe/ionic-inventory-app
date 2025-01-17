@@ -105,7 +105,11 @@ export class UserProfilePage implements OnInit {
 
     // render photo
     if (role == 'save') {
+      // render photo 
       this.profilePhoto = data.photo;
+
+      // todo: save to db
+      
     }
   }
 }
