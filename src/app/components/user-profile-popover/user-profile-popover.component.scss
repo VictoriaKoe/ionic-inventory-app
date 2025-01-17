@@ -1,32 +1,48 @@
-.avatar-container {
-    padding: 4px;
-    text-align: center;
-    cursor: pointer;
-    background: none;
-    border: 0px transparent;
-  }
+// .avatar-container {
+//     padding: 4px;
+//     text-align: center;
+//     cursor: pointer;
+//     background: none;
+//     border: 0px transparent;
+//   }
 
-  .avatar-container img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-  }
+//   .avatar-container img {
+//     width: 60px;
+//     height: 60px;
+//     border-radius: 50%;
+//   }
 
-  // computer hover
-  .avatar-container:hover {
-    background-color: #ecd6fa;
-  }
+//   // computer hover
+//   .avatar-container:hover {
+//     background-color: #ecd6fa;
+//   }
   
-  ion-content {
-    --padding: 10px;
-  }
+//   ion-content {
+//     --padding: 10px;
+//   }
 
-  .avatar-button:focus {
-    outline: none;
-    border-color: var(--ion-color-primary);
-  }
+//   .avatar-container:focus {
+//     outline: none;
+//     border-color: var(--ion-color-primary);
+//   }
   
-  .avatar-button[aria-pressed="true"] {
-    border-color: var(--ion-color-primary);
-    background-color: var(--ion-color-primary-tint);
-  }
+//   .avatar-container[aria-pressed="true"] {
+//     border-color: var(--ion-color-primary);
+//     background-color: var(--ion-color-primary-tint);
+//   }
+
+ion-list {
+  margin: 0;
+  padding: 5px;
+}
+
+ion-item {
+  --padding-left: 10px;
+}
+
+.settings-container {
+  margin: 0;
+  padding: 10px;
+  height: auto;
+}
+
