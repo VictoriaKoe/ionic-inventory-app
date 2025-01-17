@@ -5,9 +5,15 @@ import {
   IonButtons,
   IonMenuButton, 
   IonButton, 
-  IonIcon
+  IonIcon,
+  IonModal,
+  IonList,
+  IonItem,
+  IonLabel
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { UserProfilePopoverComponent } from '../user-profile-popover/user-profile-popover.component';
+import { PopoverController } from '@ionic/angular';
 
 
 @Component({
@@ -20,20 +26,40 @@ import { Router } from '@angular/router';
     IonButton, 
     IonButtons, 
     IonMenuButton,
-    IonIcon
+    IonIcon,
+    IonModal,
+    IonList,
+    IonItem,
+    IonLabel
   ],
 })
 export class NavigationBarComponent implements OnInit {
 
   @Input() name?: string;
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private popCtrl: PopoverController) { }
 
   ngOnInit() {}
 
-  // redirect to user profile pg
-  toUserProfile() {
-    this.route.navigate(['user-profile']);
+  // // redirect to user profile pg
+  // toUserProfile() {
+  //   this.route.navigate(['user-profile']);
+  // }
+
+  // opt feature
+  async presentSettingPopover(event: Event) {
+    const popover = await this.popCtrl.create({
+      component: UserProfilePopoverComponent,
+      event: event,
+      // translucent: false,
+      // size: "cover",
+      dismissOnSelect: true,
+      side: "bottom",
+      // arrow: true
+    });
+
+    await popover.present();
+
   }
 
 }

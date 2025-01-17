@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { NavigationBarComponent } from './navigation-bar.component';
+import { UserProfilePopoverComponent } from '../user-profile-popover/user-profile-popover.component';
 
 @NgModule({
   imports: [ 
@@ -11,7 +12,7 @@ import { NavigationBarComponent } from './navigation-bar.component';
     FormsModule, 
     IonicModule,
   ],
-  declarations: [NavigationBarComponent],
+  declarations: [NavigationBarComponent, UserProfilePopoverComponent],
   exports: [NavigationBarComponent]
 })
 export class NavigationBarComponentModule {}

@@ -3,15 +3,16 @@
   <ion-toolbar>
 
     <!-- menu  -->
-      <ion-buttons slot="start" id = "main-content">
-        <ion-menu-button auto-hide="false"></ion-menu-button>
-      </ion-buttons>
+    <ion-buttons slot="start" id = "main-content">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
 
     <h4> {{ name }} </h4>
 
       <!-- profile icon -->
-    <ion-buttons slot="end" class="ion-no-margin" (click) = "toUserProfile()">
+    <ion-buttons slot="end" class="ion-no-margin" id = "open-profile-icon" (click) = 'presentSettingPopover($event)'>
       <ion-button>
+        <!-- todo: change to avater -->
         <ion-icon aria-hidden = "true" ios="person-circle-outline" md="person-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
