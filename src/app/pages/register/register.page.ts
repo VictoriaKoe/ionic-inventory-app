@@ -29,7 +29,7 @@ export class RegisterPage implements OnInit {
       {type: 'required', message: 'Username is required. '},
       {type: 'minlength', message: 'Username must be at least 3 characters long. '},
       {type: 'maxlength', message: 'Username must not be more than 10 characters long. '},
-      // {type: 'pattern', message: 'Username must contain only letters and numbers. '},
+      {type: 'pattern', message: 'Username must not contain special characters. '},
       {type: 'validUsername', message: 'Your username has already been taken. '}
     ],
 
@@ -86,14 +86,14 @@ export class RegisterPage implements OnInit {
         Validators.maxLength(10),
         Validators.minLength(3),
         // username pattern 
-        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z]||[0-9]+$'),
+        Validators.pattern('^[a-zA-Z0-9]+$'),
         Validators.required
       ])),
 
       // user name
       newName: new FormControl('', Validators.compose([
         // username pattern 
-        Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z]+$'),
+        Validators.pattern('^[a-zA-Z]+( [a-zA-Z]+)*$'),
         Validators.required
       ])),
 
@@ -122,7 +122,7 @@ export class RegisterPage implements OnInit {
       }),
 
       // terms policy 
-      terms: new FormControl(true, Validators.pattern('true'))
+      terms: new FormControl(false, Validators.pattern('true'))
   });
   }
 
