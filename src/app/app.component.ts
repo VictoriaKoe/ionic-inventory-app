@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     { title: 'Categories', url: '/home', icon: 'shapes'},
     { title: 'Profile', url: 'user-profile', icon: 'person-circle'},
     // empty pages
-    { title: 'Terms & Policy', url: '/', icon: 'document-text'},
+    { title: 'Terms Policy', url: '/', icon: 'document-text'},
     { title: 'Settings', url: '', icon: 'settings'}
     // order
   ];
