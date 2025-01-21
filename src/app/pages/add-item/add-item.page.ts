@@ -1,4 +1,4 @@
-import { Component, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-item',
@@ -8,10 +8,14 @@ import { Component, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 })
 export class AddItemPage implements OnInit {
 
-  // var to stored val
+  // item category, status
   itemCategoryArray: any[] = [];
   itemStatusArray: any[] = [];
+
+  // category name
   categoryName: any;
+
+  // item data
   itemData: any;
 
   // store data
@@ -25,40 +29,62 @@ export class AddItemPage implements OnInit {
     this.itemCategoryArray = [
       {
         cat_id: this.generateId(),
-        cat_name: "Acrylic Stands"
+        cat_name: "Books"
       },
 
       {
         cat_id: this.generateId(),
-        cat_name: "Badges"
+        cat_name: "Magazines"
       },
 
       {
         cat_id: this.generateId(),
-        cat_name: "Merchandise"
+        cat_name: "Official Character Merchandises"
+      },
+
+      {
+        cat_id: this.generateId(),
+        cat_name: "Official KPOP Merchandises"
+      },
+
+      {
+        cat_id: this.generateId(),
+        cat_name: "Fanmade Merchandises"
       }
-
   ];
 
   this.itemStatusArray = [
+
+    // condition
     {
       status_id: this.generateId(),
-      status_name: 'Good condition'
+      status_name: 'New'
     },
 
     {
       status_id: this.generateId(),
-      status_name: 'Broken'
+      status_name: 'Damaged'
     },
 
     {
       status_id: this.generateId(),
-      status_name: 'Rusting'
+      status_name: 'Wear'
+    },
+
+    // status
+    {
+      status_id: this.generateId(),
+      status_name: 'Ordered'
     },
 
     {
       status_id: this.generateId(),
-      status_name: 'Under Repair'
+      status_name: 'Reserved'
+    },
+
+    {
+      status_id: this.generateId(),
+      status_name: 'Shipped'
     },
 
   ];
@@ -68,8 +94,16 @@ export class AddItemPage implements OnInit {
     
   }
 
+  // dummy function to generate id
   generateId() {
     return Math.floor(Math.random() * 1000);
+  }
+
+  // todo: add item details to db 
+  addItemForm() {
+    console.log("invoke add item form");
+
+    
   }
 
 }

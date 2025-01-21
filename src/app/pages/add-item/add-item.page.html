@@ -15,18 +15,18 @@
         <!-- item descripton -->
         <ion-item>
             <ion-label position = "stacked">Description</ion-label>
-            <ion-textarea name = "item_description">
-            </ion-textarea>
+            <ion-textarea name = "item_description"></ion-textarea>
         </ion-item>
 
         <br/>
 
-         <!-- item origin -->
-         <ion-item>
+        <!-- item origin -->
+        <ion-item>
             <ion-label position = "stacked">Origin</ion-label>
-            <ion-input name = "item_origin">
-            </ion-input>
+            <ion-input name = "item_origin"></ion-input>
         </ion-item>
+
+        <br/>
 
         <!-- category -->
         <!-- todo: render from item category lookup tbl -->
@@ -44,7 +44,7 @@
         <ion-item>
             <ion-label position = "stacked">Status</ion-label>
             <!-- drop down menu -->
-            <ion-select name = "item_status" interface = "popover" [value]= "(itemStatusArray.length > 0 ? itemStatusArray[0] : '')">
+            <ion-select name = "item_status" interface = "popover" [value]= "(itemStatusArray.length > 0 ? itemStatusArray[0] : '')"  [multiple]="true">
                 <ion-select-option *ngFor = "let status of itemStatusArray" [value] = "status.status_name">
                     {{status.status_name}}
                 </ion-select-option>
@@ -72,7 +72,7 @@
         <br/>
 
         <!-- submit item form -->
-        <ion-button expand = "block" shape = "round" type = "submit">Add Product</ion-button>
+        <ion-button expand = "block" shape = "round" type = "submit" (click) = "addItemForm()" >Add Product</ion-button>
 
     </form>
 
