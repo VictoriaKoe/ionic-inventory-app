@@ -1,8 +1,79 @@
 <app-navigation-bar name = "Add Item"></app-navigation-bar>
 
 <ion-content [fullscreen]="true">
-    
 
-  
+    <form>
+
+        <!-- item name -->
+        <ion-item>
+            <ion-label position = "stacked">Item Name</ion-label>
+            <ion-input name = "item_name"></ion-input>
+        </ion-item>
+
+        <br/>
+
+        <!-- item descripton -->
+        <ion-item>
+            <ion-label position = "stacked">Description</ion-label>
+            <ion-textarea name = "item_description">
+            </ion-textarea>
+        </ion-item>
+
+        <br/>
+
+         <!-- item origin -->
+         <ion-item>
+            <ion-label position = "stacked">Origin</ion-label>
+            <ion-input name = "item_origin">
+            </ion-input>
+        </ion-item>
+
+        <!-- category -->
+        <!-- todo: render from item category lookup tbl -->
+        <ion-item>
+            <ion-label position = "stacked">Category</ion-label>
+            <!-- drop down menu -->
+            <ion-select name = "item_category" interface = "popover" [value]= "categoryName || (itemCategoryArray.length > 0 ? itemCategoryArray[0].cat_name : '') || itemCategoryArray[0].cat_name">
+                <ion-select-option *ngFor = "let category of itemCategoryArray" [value] = "category.cat_name">
+                    {{category.cat_name}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <!-- status -->
+        <ion-item>
+            <ion-label position = "stacked">Status</ion-label>
+            <!-- drop down menu -->
+            <ion-select name = "item_status" interface = "popover" [value]= "(itemStatusArray.length > 0 ? itemStatusArray[0] : '')">
+                <ion-select-option *ngFor = "let status of itemStatusArray" [value] = "status.status_name">
+                    {{status.status_name}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <br/>
+
+        <!-- value (rm)-->
+        <ion-item>
+            <ion-label position = "stacked">Value (RM)</ion-label>
+            <ion-input name = "item_value">
+            </ion-input>
+        </ion-item>
+
+        <br/>
+
+        <!-- item photo -->
+        <ion-item>
+            <ion-label position = "stacked">Item Photo</ion-label>
+            <ion-input name = "item_photo">
+            </ion-input>
+        </ion-item>
+
+        <br/>
+
+        <!-- submit item form -->
+        <ion-button expand = "block" shape = "round" type = "submit">Add Product</ion-button>
+
+    </form>
 
 </ion-content>
