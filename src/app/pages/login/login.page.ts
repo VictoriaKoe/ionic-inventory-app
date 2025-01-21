@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
 
     
     // route to main page
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
   // route to register form
@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
 
   // route to forget password 
   forgetPassword() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/forget-password']);
   }
 
 }
