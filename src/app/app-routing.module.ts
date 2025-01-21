@@ -46,10 +46,10 @@ const routes: Routes = [
   },
 
   // add item page
-  {
-    path: 'add-item',
-    loadChildren: () => import('./pages/add-item/add-item.module').then( m => m.AddItemPageModule)
-  },
+  // {
+  //   path: 'add-item',
+  //   loadChildren: () => import('./pages/add-item/add-item.module').then( m => m.AddItemPageModule)
+  // },
 
   // home page
   // {
@@ -63,11 +63,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/terms-policy/terms-policy.module').then( m => m.TermsPolicyPageModule)
   },
 
+  // category items
+  // {
+  //   path: 'category-items',
+  //   loadChildren: () => import('./pages/category-items/category-items.module').then( m => m.CategoryItemsPageModule)
+  // },
+
   // page not found 404, wildcard router
   {
     path: '**',
     loadChildren: () => import('./pages/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },
+  
  
 ];
 

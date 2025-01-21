@@ -14,13 +14,13 @@ export class AppComponent implements OnInit {
 
 
   public appPages = [
-    { title: 'Home', url: '/home', icon: 'home' },
-    { title: 'Items', url: '/home', icon: 'cube' },
-    { title: 'Categories', url: '/home', icon: 'shapes'},
+    { title: 'Home', url: '/main/home', icon: 'home' },
+    { title: 'Items', url: '/main/home', icon: 'cube' },
+    { title: 'Categories', url: '/main/home', icon: 'shapes'},
     { title: 'Profile', url: 'user-profile', icon: 'person-circle'},
     // empty pages
-    { title: 'Terms Policy', url: '/', icon: 'document-text'},
-    { title: 'Settings', url: '', icon: 'settings'}
+    { title: 'Terms Policy', url: 'terms-policy', icon: 'document-text'},
+    { title: 'Settings', url: 'settings', icon: 'settings'}
     // order
   ];
 
