@@ -16,12 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/welcome-page/welcome-page.module').then( m => m.WelcomePagePageModule)
   },
 
-  // home page
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  // },
-
   // login page
   {
     path: 'login',
@@ -57,12 +51,24 @@ const routes: Routes = [
     loadChildren: () => import('./pages/add-item/add-item.module').then( m => m.AddItemPageModule)
   },
 
+  // home page
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  // },
+
+  // terms-policy
+  {
+    path: 'terms-policy',
+    loadChildren: () => import('./pages/terms-policy/terms-policy.module').then( m => m.TermsPolicyPageModule)
+  },
+
   // page not found 404, wildcard router
   {
     path: '**',
     loadChildren: () => import('./pages/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },
-
+ 
 ];
 
 @NgModule({

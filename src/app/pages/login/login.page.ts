@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
 
     
     // route to main page
-    this.router.navigate(['/']);
+    this.router.navigate(['/main']);
   }
 
   // route to register form
