@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
-import { UserProfilePopoverComponent } from 'src/app/components/user-profile-popover/user-profile-popover.component';
 import { ModalController } from '@ionic/angular';
 import { UserProfileModalComponent } from 'src/app/components/user-profile-modal/user-profile-modal.component';
 
@@ -58,34 +57,6 @@ export class UserProfilePage implements OnInit {
   // mask the password
   maskPassword (password: string): string {
     return '*'.repeat(password.length); // repeat * 
-  }
-
-  // edit profile photo
-  async editProfilePhoto(event: any) {
-
-    const popover = await this.popoverCtrl.create({
-      // create popover
-      component: UserProfilePopoverComponent,
-      event: event,
-      translucent: true,
-      dismissOnSelect: true,
-      arrow: true,
-      backdropDismiss: true,
-      cssClass: 'avatar-popover'
-    });
-
-    // show popover
-    await popover.present();
-
-    // get data when popover dismiss
-    const { data } = await popover.onDidDismiss(); 
-
-    if (data) {
-      // render profile photo 
-      this.profilePhoto = data;
-
-      // todo: save to db
-    }
   }
 
   async openEditProfile() {
