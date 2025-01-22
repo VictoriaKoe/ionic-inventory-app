@@ -6,10 +6,13 @@ import {
   IonMenuButton, 
   IonButton, 
   IonIcon,
+  IonImg,
+  IonTitle
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { UserProfilePopoverComponent } from '../user-profile-popover/user-profile-popover.component';
 import { PopoverController } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -23,6 +26,9 @@ import { PopoverController } from '@ionic/angular';
     IonButtons, 
     IonMenuButton,
     IonIcon,
+    CommonModule,
+    IonImg,
+    IonTitle
   ],
 })
 export class NavigationBarComponent implements OnInit {
