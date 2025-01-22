@@ -21,7 +21,7 @@ const routes: Routes = [
 
       {
         path: 'items',
-        loadChildren: () => import('../../home/home.module').then( m => m.HomePageModule)
+        loadChildren: () => import('../../pages/item-view/item-view.module').then( m => m.ItemViewPageModule)
       },
 
       {
