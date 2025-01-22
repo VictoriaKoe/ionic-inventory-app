@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { TermsPolicyPageRoutingModule } from './terms-policy-routing.module';
 
 import { TermsPolicyPage } from './terms-policy.page';
+import { NavBar2Component } from 'src/app/components/nav-bar2/nav-bar2.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TermsPolicyPageRoutingModule
+    TermsPolicyPageRoutingModule,
+    NavBar2Component
   ],
   declarations: [TermsPolicyPage]
 })
