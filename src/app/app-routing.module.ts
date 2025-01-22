@@ -63,6 +63,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/terms-policy/terms-policy.module').then( m => m.TermsPolicyPageModule)
   },
 
+  // all items view
+  {
+    path: 'item-view',
+    loadChildren: () => import('./pages/item-view/item-view.module').then( m => m.ItemViewPageModule)
+  },
+  
   // category items
   // {
   //   path: 'category-items',
@@ -73,8 +79,7 @@ const routes: Routes = [
   {
     path: '**',
     loadChildren: () => import('./pages/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
-  },
-  
+  }
  
 ];
 
