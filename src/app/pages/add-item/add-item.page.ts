@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { IonSelect } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-item',
@@ -8,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddItemPage implements OnInit {
 
+  @ViewChild('selectOpt') selectOpt!: IonSelect;
+  @ViewChild('statusOpt') statusOpt!: IonSelect;
+  
   // item category, status
   itemCategoryArray: any[] = [];
   itemStatusArray: any[] = [];
@@ -104,6 +108,22 @@ export class AddItemPage implements OnInit {
     console.log("invoke add item form");
 
     
+  }
+
+  // clear input val
+  clearItemForm() {
+    const form = document.querySelector('form') as HTMLFormElement;
+
+    if (form) {
+      // reset form 
+      form.reset();
+
+      // clear drop down value
+      this.selectOpt.value = null;
+      this.statusOpt.value = [];
+      
+      console.log("clear form");
+    }
   }
 
 }
