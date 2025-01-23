@@ -46,10 +46,10 @@ const routes: Routes = [
   },
 
   // add item page
-  // {
-  //   path: 'add-item',
-  //   loadChildren: () => import('./pages/add-item/add-item.module').then( m => m.AddItemPageModule)
-  // },
+  {
+    path: 'add-item',
+    loadChildren: () => import('./pages/add-item/add-item.module').then( m => m.AddItemPageModule)
+  },
 
   // home page
   // {
