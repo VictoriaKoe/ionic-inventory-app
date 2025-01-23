@@ -1,22 +1,70 @@
-<app-navigation-bar name = "Items"></app-navigation-bar>
+<app-navigation-bar name = "Items Inventory"></app-navigation-bar>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-margin-top">
 
   <div class = "item-header"> 
 
+    <!-- search bar icon-->
+    <ion-icon 
+      [name] = "isSearchOpen? 'close-outline': 'search-outline' "
+      (click) = "toogleSearchOpen(isSearchOpen)" 
+      id = "searchIcon">
+    </ion-icon>
+
     <!-- search bar -->
-    <ion-searchbar>
-    </ion-searchbar>
-
+    <div *ngIf = "isSearchOpen">
+      <ion-searchbar 
+        show-clear-button="always" 
+        placeholder = "Search items...."
+        class = "custom-search"
+        autocomplete = true
+        (ionInput) = "searchInput($event)"
+        [debounce] = "1000" 
+      ></ion-searchbar>
+      <!-- delay ion input event-->
+    </div>
+  
     <!-- add product button-->
-
-    <!-- item list card -->
-     
+    <ion-button (click) = "addItem()">
+      Add Item
+      <ion-icon slot = "start" name = "add-outline"></ion-icon>
+    </ion-button>
 
   </div>
- 
 
-  
-  
-  
+  <!-- item list card -->
+  <ion-grid [fixed]="true">
+    <!-- loop to render items -->
+    <ion-row>
+
+      <!-- 1st col -->
+      <ion-col size = "6" *ngFor = "let item of queryItemResult; let i = index">
+        
+        <!-- todo: change to actual item data -->
+        <ion-card class = "item-card">
+          <!-- item img -->
+          <img alt = "item1" src = "https://ionicframework.com/docs/img/demos/card-media.png" />
+          
+          <!-- item name -->
+          <ion-card-header class="ion-no-margin">
+            <ion-card-title> {{item.item_name}} </ion-card-title>
+          </ion-card-header>
+    
+          <!-- simple item details -->
+          <ion-card-content class="ion-no-margin">
+            <!-- category -->
+            <p style = "font-weight: 300 "> Category: {{item.cat_name}} </p>
+
+            <!-- status -->
+            <ng-container *ngFor = "let status of item.item_status" >
+              <p style = "font-weight: 300 "> Status: {{status}}</p>
+            </ng-container>
+            
+          </ion-card-content>
+          
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 </ion-content>
