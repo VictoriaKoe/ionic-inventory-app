@@ -46,7 +46,7 @@ export class ItemViewPage implements OnInit {
     ];
 
     // get item data from db  
-
+    
     this.queryItemResult = this.itemData;
   }
 
