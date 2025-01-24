@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   public appPages = [
     { title: 'Home', url: '/main/home', icon: 'home' },
     { title: 'Items', url: '/main/items', icon: 'cube' },
-    { title: 'Categories', url: '/main/home', icon: 'shapes'},
+    { title: 'Categories', url: '/main/categories', icon: 'shapes'},
     { title: 'Profile', url: 'user-profile', icon: 'person-circle'},
     // empty pages
     { title: 'Terms Policy', url: 'terms-policy', icon: 'document-text'},

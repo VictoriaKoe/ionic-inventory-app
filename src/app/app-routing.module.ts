@@ -51,36 +51,41 @@ const routes: Routes = [
     loadChildren: () => import('./pages/add-item/add-item.module').then( m => m.AddItemPageModule)
   },
 
-  // home page
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  // },
-
   // terms-policy
   {
     path: 'terms-policy',
     loadChildren: () => import('./pages/terms-policy/terms-policy.module').then( m => m.TermsPolicyPageModule)
   },
 
-  // all items view
+  // settings 
   {
-    path: 'item-view',
-    loadChildren: () => import('./pages/item-view/item-view.module').then( m => m.ItemViewPageModule)
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   },
-  
-  // category items
+
+   // home page
   // {
-  //   path: 'category-items',
-  //   loadChildren: () => import('./pages/category-items/category-items.module').then( m => m.CategoryItemsPageModule)
+  //   path: 'home',
+  //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  // },
+
+  // items view
+  // {
+  //   path: 'item-view',
+  //   loadChildren: () => import('./pages/item-view/item-view.module').then( m => m.ItemViewPageModule)
+  // },
+
+  // category 
+  // {
+  //   path: 'category',
+  //   loadChildren: () => import('./pages/category/category.module').then( m => m.CategoryPageModule)
   // },
 
   // page not found 404, wildcard router
   {
     path: '**',
     loadChildren: () => import('./pages/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
-  }
- 
+  },
 ];
 
 @NgModule({
