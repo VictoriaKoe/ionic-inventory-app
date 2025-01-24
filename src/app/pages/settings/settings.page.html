@@ -1,0 +1,25 @@
+<app-navigation-bar2 name = "Settings"></app-navigation-bar2>
+
+<ion-content [fullscreen] = "true">
+
+  <ion-list id="settings-list" lines = "full">
+
+    <!-- loop app pages -->
+    @for (p of settingPages; track p; let i = $index) {
+    <ion-item>
+      <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-outline'"></ion-icon>
+      <ion-label>{{ p.title }}</ion-label>
+      <ion-icon 
+        aria-hidden="true" 
+        slot="end" 
+        ios = "chevron-forward-outline" 
+        md = "chevron-forward-outline"
+        (click) = "navigateForward(p.url)"
+      >
+      </ion-icon>
+    </ion-item>
+    }
+
+  </ion-list>
+
+</ion-content>
