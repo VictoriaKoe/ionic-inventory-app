@@ -8,6 +8,7 @@ import { AddItemPageRoutingModule } from './add-item-routing.module';
 
 import { AddItemPage } from './add-item.page';
 import { NavigationBarComponent } from 'src/app/components/navigation-bar/navigation-bar.component';
+import { ImageUploadComponentComponent } from 'src/app/components/image-upload-component/image-upload-component.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { NavigationBarComponent } from 'src/app/components/navigation-bar/naviga
     FormsModule,
     IonicModule,
     AddItemPageRoutingModule,
-    NavigationBarComponent
+    NavigationBarComponent,
+    ImageUploadComponentComponent
   ],
   declarations: [AddItemPage]
 })

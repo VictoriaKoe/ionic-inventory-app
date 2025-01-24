@@ -1,6 +1,6 @@
 <app-navigation-bar name = "Add Item"></app-navigation-bar>
 
-<ion-content [fullscreen] = "true" scrollY = "false">
+<ion-content [fullscreen] = "true" scrollY = "true">
 
     <form>
 
@@ -48,6 +48,8 @@
             </ion-select>
         </ion-item>
 
+        <br/>
+
         <!-- status -->
         <ion-item>
             <ion-label position = "stacked">Status</ion-label>
@@ -73,19 +75,15 @@
         <!-- value (rm)-->
         <ion-item>
             <ion-label position = "stacked">Value (RM)</ion-label>
-            <ion-input name = "item_value">
+            <ion-input type = "number" name = "item_value">
             </ion-input>
         </ion-item>
 
         <br/>
 
         <!-- item photo -->
-        <ion-item>
-            <ion-label position = "stacked">Item Photo</ion-label>
-            <ion-input name = "item_photo" >
-            </ion-input>
-        </ion-item>
-
+       <image-upload-component></image-upload-component>
+       
         <br/>
 
         <div style = "display: flex; justify-content: space-between; padding: 0px 2px; ">

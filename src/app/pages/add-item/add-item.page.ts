@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { IonSelect } from '@ionic/angular';
+import { ImageUploadComponentComponent } from 'src/app/components/image-upload-component/image-upload-component.component';
 
 @Component({
   selector: 'app-add-item',
@@ -9,8 +10,11 @@ import { IonSelect } from '@ionic/angular';
 })
 export class AddItemPage implements OnInit {
 
+  // reset drop down val to default after click cancel button
   @ViewChild('selectOpt') selectOpt!: IonSelect;
   @ViewChild('statusOpt') statusOpt!: IonSelect;
+  // clear img preview 
+  @ViewChild(ImageUploadComponentComponent) itemImg!: ImageUploadComponentComponent;
   
   // item category, status
   itemCategoryArray: any[] = [];
@@ -103,13 +107,6 @@ export class AddItemPage implements OnInit {
     return Math.floor(Math.random() * 1000);
   }
 
-  // todo: add item details to db 
-  addItemForm() {
-    console.log("invoke add item form");
-
-    
-  }
-
   // clear input val
   clearItemForm() {
     const form = document.querySelector('form') as HTMLFormElement;
@@ -121,9 +118,19 @@ export class AddItemPage implements OnInit {
       // clear drop down value
       this.selectOpt.value = null;
       this.statusOpt.value = [];
+      this.itemImg.resetUpload();
+
       
       console.log("clear form");
     }
   }
 
+  // todo: add item details to db 
+  addItemForm() {
+    console.log("invoke add item form");
+
+    // save to db
+    
+    
+  }
 }
