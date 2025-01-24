@@ -1,0 +1,24 @@
+ <!-- item photo -->
+<ion-item>
+
+    <ion-label position = "stacked">Upload Item Photo</ion-label>
+    
+    <input 
+        type = "file" 
+        (change) = "uploadPhoto($event)" 
+        accept = "image/jpeg', 'image/png', 'image/jpg"
+        class = 'custom-file'
+        name = "item_image"
+    />
+
+    <!-- check img upload to db server -->
+    <div *ngIf = "barStatus">
+        Uploading.....
+    </div>
+
+</ion-item>
+
+<!-- img preview -->
+<ion-img *ngIf = "selectedFile" loading = "lazy" [src]= "selectedFile" alt="Selected Image" class = "preview"/>
+
+
