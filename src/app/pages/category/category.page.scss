@@ -1,0 +1,27 @@
+ion-card.item-card {
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+    grid-template-columns: 10px 10px;
+    background-color: rgb(214, 127, 255);
+    margin: 0;
+    padding: 0;
+
+}
+
+div.cat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+    width: 100px;
+    height: 100%;
+    margin-left: 20px;
+
+}
+
+ion-icon {
+    font-size: 30px;
+    --margin: 0;
+    --padding: 10px;
+}

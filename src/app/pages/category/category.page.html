@@ -1,0 +1,37 @@
+<app-navigation-bar name = "Categories"></app-navigation-bar>
+
+<ion-content [fullscreen] = "true">
+  
+  <!-- item list card -->
+  <ion-grid>
+    <!-- loop to render categories -->
+    <ion-row>
+
+      <!-- *ngFor = "let item of queryItemResult; let i = index" -->
+      <ion-col size = "12">
+        
+        <!-- todo: change to actual item data -->
+        <ion-card class= "ion-no-padding" >
+          
+          <!-- seperate into 2 half -->
+          <div class = "item-card">
+
+            <!-- category icon -->
+            <div class = "cat-icon">
+              <ion-icon slot = "icon-only" aria-hidden = true name = "book-outline"></ion-icon>
+            </div>
+
+            <!-- categories name -->
+            <div class = "cat-icon">
+              <ion-icon></ion-icon>
+            </div>
+
+          </div>
+
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
