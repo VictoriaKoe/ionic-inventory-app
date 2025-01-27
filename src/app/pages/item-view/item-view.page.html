@@ -41,27 +41,36 @@
       <ion-col size = "6" *ngFor = "let item of queryItemResult; let i = index">
         
         <!-- todo: change to actual item data -->
-        <ion-card class = "item-card">
+        <ion-card class = "item-card" (click) = "viewItemDetails(item)">
           <!-- item img -->
           <img alt = "item1" src = "https://ionicframework.com/docs/img/demos/card-media.png" />
           
-          <!-- item name -->
           <ion-card-header class="ion-no-margin">
-            <ion-card-title style = "font-size: 20px; font-weight: 500;"> {{item.item_name}} </ion-card-title>
+            <!-- item name -->
+            <ion-card-title 
+              style = "font-size: 1.25rem; font-weight: 500;"
+              class="ion-no-margin"
+            > 
+              {{item.item_name}} 
+            </ion-card-title>
           </ion-card-header>
     
           <!-- simple item details -->
           <ion-card-content class="ion-no-margin">
             <!-- category -->
-            <p style = "font-weight: 300 "> Category: {{item.cat_name}} </p>
+            <p style = "font-weight: 300; "> 
+              <span style = "font-size: 0.9rem;">Category: </span> <br/> {{item.cat_name}} 
+            </p>
+
+            <br/>
 
             <!-- status -->
-            <ng-container *ngFor = "let status of item.item_status" >
-              <p style = "font-weight: 300 "> Status: {{status}}</p>
-            </ng-container>
+            <p style = "font-weight: 300;"> 
+              <span style = "font-size: 0.9rem;">Status: </span> <br/> {{item.item_status}} 
+            </p>
             
           </ion-card-content>
-          
+
         </ion-card>
       </ion-col>
 

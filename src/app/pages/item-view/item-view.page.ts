@@ -89,6 +89,10 @@ export class ItemViewPage implements OnInit {
   }
 
   // view item details
+  viewItemDetails(item: any){
+    // todo: save specific item details to db to render on item details page
 
+    this.navCtrl.navigateForward('itemDetails');
+  }
 
 }
