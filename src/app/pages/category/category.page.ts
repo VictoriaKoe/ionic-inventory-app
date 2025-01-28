@@ -10,6 +10,7 @@ import { NavController } from '@ionic/angular';
 export class CategoryPage implements OnInit {
 
   categoryData: any[] = [];
+  categoryIconArray: any[] = [];
 
   constructor(private navCtrl: NavController) { }
 
@@ -22,22 +23,29 @@ export class CategoryPage implements OnInit {
       },
 
       {
-        cat_name: 'Official KPOP Merchandise'
+        cat_name: 'Magazines'
       },
 
       {
-        cat_name: 'Official Character Merchandise'
+        cat_name: 'Official KPOP Merchandise'
       }
     ];
 
     // get category data (lookup table) from db  
 
+
+    // category icon (constant)
+    this.categoryIconArray = ['book', 'newspaper', 'heart-circle', 'happy', 'sparkles']
+
   }
 
   // navigate to category page
   navigateCategoryPage() {
-    this.navCtrl.navigateForward('');
-    
+    // todo: set category name to render correct item of each cat when navigating
+
+
+    // navigate to category item page
+    this.navCtrl.navigateForward('main-category');
   }
 
 }

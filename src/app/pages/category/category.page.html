@@ -16,12 +16,20 @@
 
             <!-- category icon -->
             <div class = "cat-icon">
-              <ion-icon slot = "icon-only" aria-hidden = true name = "book-outline"></ion-icon>
+              <ion-icon 
+                slot = "icon-only" 
+                aria-hidden = true 
+                [ios] = "categoryIconArray[i]+ '-outline' "
+                [md] = "categoryIconArray[i] + '-outline'"
+              ></ion-icon>
             </div>
 
             <!-- categories name -->
             <div class = "cat-name">
-              <h4 style = "text-align: center; font-weight: bold; color: black;">
+              <h4 
+                style = "text-align: center; 
+                font-weight: bold; 
+                color: black;">
                 <!-- todo: change to actual item categories from db -->
                 {{category.cat_name}}
               </h4>
