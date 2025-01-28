@@ -47,6 +47,7 @@ export class ItemViewPage implements OnInit {
 
     // get item data from db  
     
+    // search bar query item to filter
     this.queryItemResult = this.itemData;
   }
 
@@ -92,7 +93,7 @@ export class ItemViewPage implements OnInit {
   viewItemDetails(item: any){
     // todo: save specific item details to db to render on item details page
 
-    this.navCtrl.navigateForward('itemDetails');
+    this.navCtrl.navigateForward('item-details');
   }
 
 }

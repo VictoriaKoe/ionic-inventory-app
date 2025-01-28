@@ -1,0 +1,49 @@
+<app-navigation-bar2 name = "Item Details"></app-navigation-bar2>
+
+<ion-content [fullscreen] = "true">
+
+  <!-- todo: list all item details from db-->
+  <div class = "item_container">
+
+    <!-- *ngFor = "let item of queryItemResult; let i = index" -->
+    <!-- todo: render actual item image -->
+    <div class = "custom_item_image">
+      <ion-img
+        [src] = itemImage
+        alt = "item_details"
+        style = "height: 200px;"
+      ></ion-img>
+    </div>
+    
+    <!-- todo: render actual item details from db -->
+    <ion-list>
+      <ion-item>
+
+        <!-- item name -->
+        <h3 style = "text-align: center; ">
+          <!-- {{item.item_name}} -->
+          Lightstick
+        </h3>
+
+        <br/>
+        
+        <!-- item description -->
+        <p>Item Description: </p>
+
+        <!-- origin -->
+
+
+        <!-- category -->
+
+        <!-- status -->
+
+        <!-- value -->
+
+      </ion-item>
+    </ion-list>
+
+
+  </div>
+
+ 
+</ion-content>
