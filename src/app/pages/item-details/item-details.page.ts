@@ -22,12 +22,12 @@ export class ItemDetailsPage implements OnInit {
     this.itemData = [
       {
         itemId: 1,
-        item_name: 'Acer360',
-        cat_name: 'Laptop',
-        item_status: ['Broken'],
-        item_description: "",
-        item_origin: "",
-        item_value: 100
+        item_name: 'Official Light Stick Ver 3',
+        cat_name: 'Official KPOP Merchandise',
+        item_status: ['Used, Good condition'],
+        item_description: "specially designed for A.R.M.Y",
+        item_origin: "Korea",
+        item_value: 200
       }
     ];
 
@@ -36,9 +36,6 @@ export class ItemDetailsPage implements OnInit {
 
     // todo: get actual item data from db  
 
-
   }
-
-
-
+  
 }

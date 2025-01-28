@@ -12,10 +12,12 @@
 .custom_item_image{
     align-items: center;
     border-radius: 20px;
-    border: 1px solid var(--ion-color-secondary);
+    // border: 1px solid var(--ion-color-secondary);
+    margin-bottom: 2px;
 
 }
 
 p{
-    
+   font-size: 18px;
+
 }

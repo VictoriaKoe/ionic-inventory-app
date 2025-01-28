@@ -3,9 +3,9 @@
 <ion-content [fullscreen] = "true">
 
   <!-- todo: list all item details from db-->
-  <div class = "item_container">
+  <div class = "item_container" *ngFor = "let item of itemData; let i = index">
 
-    <!-- *ngFor = "let item of queryItemResult; let i = index" -->
+    <!-- *ngFor = "let item of itemData; let i = index" -->
     <!-- todo: render actual item image -->
     <div class = "custom_item_image">
       <ion-img
@@ -16,34 +16,41 @@
     </div>
     
     <!-- todo: render actual item details from db -->
-    <ion-list>
+    <ion-list lines = "none">
+      
+      <!-- item name -->
       <ion-item>
-
-        <!-- item name -->
-        <h3 style = "text-align: center; ">
-          <!-- {{item.item_name}} -->
-          Lightstick
+        <h3 style = "text-align: center; padding: 5px; ">
+          {{item.item_name}}
         </h3>
-
-        <br/>
-        
-        <!-- item description -->
-        <p>Item Description: </p>
-
-        <!-- origin -->
-
-
-        <!-- category -->
-
-        <!-- status -->
-
-        <!-- value -->
-
       </ion-item>
+
+      <!-- item description -->
+      <ion-item>
+        <p>Item Description: <br/> {{item.item_description}}</p>
+      </ion-item>
+
+      <!-- value -->
+      <ion-item>
+        <p>Item Value: <br/> <strong>RM {{item.item_value}}</strong> </p>
+      </ion-item>
+
+      <!-- origin -->
+      <ion-item>
+        <p>Item Origin: <br/> {{item.item_origin}}</p>
+      </ion-item>
+
+      <!-- category -->
+      <ion-item>
+        <p>Category: <br/>  {{item.cat_name}}</p>
+      </ion-item>
+
+      <!-- status -->
+      <ion-item>
+        <p>Status: <br/> {{item.item_status}}</p>
+      </ion-item>
+
     </ion-list>
-
-
   </div>
 
- 
 </ion-content>
