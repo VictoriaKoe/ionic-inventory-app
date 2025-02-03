@@ -45,7 +45,7 @@ export class CategoryPage implements OnInit {
 
 
     // navigate to category item page
-    this.navCtrl.navigateForward('main-category');
+    this.navCtrl.navigateForward('category-items');
   }
 
 }

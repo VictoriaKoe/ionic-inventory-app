@@ -63,9 +63,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   },
 
+  // item details
   {
     path: 'item-details',
     loadChildren: () => import('./pages/item-details/item-details.module').then( m => m.ItemDetailsPageModule)
+  },
+
+  // category items
+  {
+    path: 'category-items',
+    loadChildren: () => import('./pages/category-items/category-items.module').then( m => m.CategoryItemsPageModule)
   },
 
    // home page
@@ -90,8 +97,8 @@ const routes: Routes = [
   {
     path: '**',
     loadChildren: () => import('./pages/page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
-  },
-  
+  }
+
 ];
 
 @NgModule({
