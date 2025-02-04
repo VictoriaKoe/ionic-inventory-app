@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { IonSelect } from '@ionic/angular';
 import { ImageUploadComponentComponent } from 'src/app/components/image-upload-component/image-upload-component.component';
+import { ItemStatusService } from 'src/app/services/item-status.service';
 
 @Component({
   selector: 'app-add-item',
@@ -29,7 +30,7 @@ export class AddItemPage implements OnInit {
   // store data
   jsonData: any;
 
-  constructor() { }
+  constructor(private itemStatus: ItemStatusService) { }
 
   ngOnInit() {
 
@@ -61,44 +62,13 @@ export class AddItemPage implements OnInit {
       }
   ];
 
-  this.itemStatusArray = [
+  // todo: get actual data from db service
+  // category
+  // this.itemCategoryArray = this.categoryData.getCategoryArray();
 
-    // condition
-    {
-      status_id: this.generateId(),
-      status_name: 'New'
-    },
-
-    {
-      status_id: this.generateId(),
-      status_name: 'Damaged'
-    },
-
-    {
-      status_id: this.generateId(),
-      status_name: 'Wear'
-    },
-
-    // status
-    {
-      status_id: this.generateId(),
-      status_name: 'Ordered'
-    },
-
-    {
-      status_id: this.generateId(),
-      status_name: 'Reserved'
-    },
-
-    {
-      status_id: this.generateId(),
-      status_name: 'Shipped'
-    },
-
-  ];
-
-    // todo: get actual data from db
-    
+  // status 
+  this.itemStatusArray = this.itemStatus.getItemStatus();
+  
     
   }
 
@@ -120,7 +90,6 @@ export class AddItemPage implements OnInit {
       this.statusOpt.value = [];
       this.itemImg.resetUpload();
 
-      
       console.log("clear form");
     }
   }
