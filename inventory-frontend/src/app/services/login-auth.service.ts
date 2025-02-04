@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import * as firebase from '@angular/fire';
+// import * as firebase from '@angular/fire';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginAuthService {
 
   // default value
@@ -11,13 +12,15 @@ export class LoginAuthService {
   private email: string = '';
   private password: any;
 
-  constructor() { }
+  constructor() {}
 
-  login(email: string, password: any) {
+  // user login
+  login(userData: {}) {
     
-    this.isAuthenticated = true;
-    this.email = email;
-    this.password = password;
+    this.email, this.password = userData;
+    
+     // valid user 
+     this.isAuthenticated = true;
 
     // Firebase authentication
     // firebase.auth().signInWithEmailAndPassword(email, password)
@@ -35,17 +38,26 @@ export class LoginAuthService {
     //     const errorMessage = error.message;
     //     console.log('Error:', errorCode, errorMessage);
 
-    //     // Display the error message in the login container
+    // Display the error message in the login container
 
     // });
   }
 
-  isLoggedIn() {
+  // check user is logged in
+  isLoggedIn(): boolean {
     return this.isAuthenticated;
   }
 
-  getEmailAddress() {
+  // get user email address 
+  getEmailAddress(): string {
     return this.email;
+  }
+
+  // user logout
+  logout(): boolean{
+    // user logout
+    this.isAuthenticated = false;
+    return this.isAuthenticated;
   }
 
 }
