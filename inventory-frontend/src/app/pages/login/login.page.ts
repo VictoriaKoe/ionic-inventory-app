@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl  } from '@angular/forms';
 // import router
 import { Router } from '@angular/router';
+import { LoginAuthService } from 'src/app/services/login-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,18 +15,24 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   // initialise default val
-  username: String = '';
+  userEmail: String = '';
   password: String = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginAuthService: LoginAuthService) {}
 
   ngOnInit() {}
 
   // action after clicking sign in button
   onSubmit(){
-    console.log(this.username, this.password);
-    // todo: validate from db
+    console.log(this.userEmail, this.password);
 
+    const userLoginData = {
+      email: this.userEmail,
+      password: this.password
+    };
+
+    // todo: validate from db
+    this.loginAuthService.login(userLoginData);
     
     // route to main page
     this.router.navigate(['/main']);
