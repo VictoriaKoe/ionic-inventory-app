@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { IonSelect } from '@ionic/angular';
 import { ImageUploadComponentComponent } from 'src/app/components/image-upload-component/image-upload-component.component';
+import { ItemCategoriesService } from 'src/app/services/item-categories.service';
 import { ItemStatusService } from 'src/app/services/item-status.service';
 
 @Component({
@@ -9,6 +10,9 @@ import { ItemStatusService } from 'src/app/services/item-status.service';
   styleUrls: ['./add-item.page.scss'],
   standalone: false,
 })
+
+// src: https://developer.mozilla.org/en-US/docs/Web/API/FormData
+
 export class AddItemPage implements OnInit {
 
   // reset drop down val to default after click cancel button
@@ -16,7 +20,7 @@ export class AddItemPage implements OnInit {
   @ViewChild('statusOpt') statusOpt!: IonSelect;
   // clear img preview 
   @ViewChild(ImageUploadComponentComponent) itemImg!: ImageUploadComponentComponent;
-  
+
   // item category, status
   itemCategoryArray: any[] = [];
   itemStatusArray: any[] = [];
@@ -30,51 +34,20 @@ export class AddItemPage implements OnInit {
   // store data
   jsonData: any;
 
-  constructor(private itemStatus: ItemStatusService) { }
+  constructor(
+    private itemStatus: ItemStatusService, 
+    private categoryData: ItemCategoriesService
+  ) { }
 
   ngOnInit() {
 
-    // dummy data
-    this.itemCategoryArray = [
-      {
-        cat_id: this.generateId(),
-        cat_name: "Books"
-      },
-
-      {
-        cat_id: this.generateId(),
-        cat_name: "Magazines"
-      },
-
-      {
-        cat_id: this.generateId(),
-        cat_name: "Official Character Merchandises"
-      },
-
-      {
-        cat_id: this.generateId(),
-        cat_name: "Official KPOP Merchandises"
-      },
-
-      {
-        cat_id: this.generateId(),
-        cat_name: "Fanmade Merchandises"
-      }
-  ];
-
   // todo: get actual data from db service
   // category
-  // this.itemCategoryArray = this.categoryData.getCategoryArray();
+  this.itemCategoryArray = this.categoryData.getCategoryList();
 
   // status 
   this.itemStatusArray = this.itemStatus.getItemStatus();
-  
-    
-  }
 
-  // dummy function to generate id
-  generateId() {
-    return Math.floor(Math.random() * 1000);
   }
 
   // clear input val
@@ -97,9 +70,28 @@ export class AddItemPage implements OnInit {
   // todo: add item details to db 
   addItemForm() {
     console.log("invoke add item form");
+    console.log("category: " + this.selectOpt.value, "status: " + this.statusOpt.value);
 
-    // save to db
-    
-    
+    // get add item form html page
+    const form = document.querySelector('form') as HTMLFormElement;
+    console.log(form);
+
+    // if form exist, get all input vals from form 
+    if (form) {
+
+      const formData = new FormData(form);
+      const formDataObject = {};
+
+      // formData.forEach((key, value)) => {};
+
+
+      // save to db
+      
+    }
+
+    else {
+      console.error("form not exists.")
+    }
+
   }
 }
