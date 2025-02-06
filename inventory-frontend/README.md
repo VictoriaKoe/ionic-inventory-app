@@ -29,7 +29,7 @@ npm install [--force]
 
 
 ## Ionic Environment Setup
-link: [ionic cli](https://ionicframework.com/docs/intro/cli)
+Complete guide: [ionic cli](https://ionicframework.com/docs/intro/cli)
 
 1. Install Ionic CLI with npm
 ```bash
@@ -58,6 +58,14 @@ Open [http://localhost:8100](http://localhost:8100) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### `ionic generate [schematic][name]`
+
+Generate the app pages.
+
+`[schematic]` - type of feature (e.g. page, component, directive, service)\
+`[name]` - name/path of feature being generated
+
+Complete guide: [Ionic generte](https://ionicframework.com/docs/cli/commands/generate)
 
 
 
