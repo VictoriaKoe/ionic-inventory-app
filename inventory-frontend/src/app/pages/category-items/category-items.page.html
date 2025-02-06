@@ -6,31 +6,30 @@
 
   <!-- item list card -->
   <ion-grid>
-  <!-- loop to render items -->
-  <ion-row>
+    <!-- loop to render items -->
+    <ion-row>
 
-    <!-- 1st col -->
-    <ion-col size = "6" *ngFor = "let item of itemData; let i = index">
-      
-      <!-- todo: change to actual item data -->
-      <ion-card class = "item-card" (click) = "viewItemDetails(item)">
-        <!-- item img -->
-        <img alt = "item1" src = "https://ionicframework.com/docs/img/demos/card-media.png" />
+      <!-- 1st col -->
+      <ion-col size = "6" *ngFor = "let item of itemData; let i = index">
         
-        <ion-card-header class="ion-no-margin">
-          <!-- list item name -->
-          <ion-card-title 
-            style = "font-size: 1.25rem; font-weight: 500;"
-            class="ion-no-margin"
-          > 
-            {{item.item_name}} 
-          </ion-card-title>
+        <!-- todo: change to actual item data -->
+        <ion-card class = "item-card" (click) = "viewItemDetails(item)">
+          <!-- item img -->
+          <img alt = "item" [src] = "item.item_image" />
+          
+          <ion-card-header class="ion-no-margin">
+            <!-- list item name -->
+            <ion-card-title 
+              style = "font-size: 1.25rem; font-weight: 500; text-align: center;"
+              class="ion-no-margin"
+            > 
+              {{item.item_name}} 
+            </ion-card-title>
 
-        </ion-card-header>
-
-      </ion-card>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-
+          </ion-card-header>
+          
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
