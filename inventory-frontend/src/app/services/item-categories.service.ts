@@ -9,6 +9,7 @@ export class ItemCategoriesService {
   private categoryName: string = '';
 
   constructor() { 
+    
     // dummy data
     this.categoryList = [
       {
@@ -67,6 +68,5 @@ export class ItemCategoriesService {
   setCategoryName(newCatName: string): void {
     this.categoryName = newCatName;
   }
-
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ItemCategoriesService } from 'src/app/services/item-categories.service';
 
 @Component({
   selector: 'app-category',
@@ -9,40 +10,28 @@ import { NavController } from '@ionic/angular';
 })
 export class CategoryPage implements OnInit {
 
-  categoryData: any[] = [];
+  categoryList: any[] = [];
   categoryIconArray: any[] = [];
 
-  constructor(private navCtrl: NavController) { }
+  constructor(
+    private navCtrl: NavController, 
+    private categoryData: ItemCategoriesService
+  ) { }
 
   ngOnInit() {
-
-     // dummy data
-     this.categoryData = [
-      {
-        cat_name: 'Books'
-      },
-
-      {
-        cat_name: 'Magazines'
-      },
-
-      {
-        cat_name: 'Official KPOP Merchandise'
-      }
-    ];
-
+    
     // get category data (lookup table) from db  
-
+    this.categoryList = this.categoryData.getCategoryList();
 
     // category icon (constant)
     this.categoryIconArray = ['book', 'newspaper', 'heart-circle', 'happy', 'sparkles']
 
   }
 
-  // navigate to category page
-  navigateCategoryPage() {
+  // navigate to specific category page
+  navigateItemCategoryPage(categoryName: string) {
     // todo: set category name to render correct item of each cat when navigating
-
+    this.categoryData.setCategoryName(categoryName);
 
     // navigate to category item page
     this.navCtrl.navigateForward('category-items');
