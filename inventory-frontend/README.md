@@ -41,6 +41,11 @@ $ npm uninstall -g ionic
 $ npm install -g @ionic/cli
 ```
 
+To check Ionic version installed, run:
+```bash
+ionic --version
+```
+
 2. Run the Ionic App with the command below:
 ```bash
 ionic serve
