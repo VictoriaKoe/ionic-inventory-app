@@ -17,8 +17,6 @@ import { PasswordValidator } from '../..//validators/password_validator';
 export class RegisterPage implements OnInit {
 
   register_form: FormGroup;
-  // matching_password_group: FormGroup;
-
   // connect db
 
 
@@ -51,13 +49,8 @@ export class RegisterPage implements OnInit {
     ],
 
     'retypePassword': [
-      {type: 'required', message: 'Confirm password is required. '},
-      // {type: 'isPasswordMatched', message: 'Password mismatch. '}
+      {type: 'required', message: 'Confirm password is required. '}
     ],
-
-    // 'matching_passwords': [
-    //   {type: 'isPasswordMatched', message: 'Password mismatch. '}
-    // ],
 
     'terms': [
       {type: 'pattern', message: 'Your must accept the terms and conditions'},
@@ -126,25 +119,6 @@ export class RegisterPage implements OnInit {
   });
   }
 
-  // initialise password form group 
-  // private initialisePassword () {
-    
-  //   return this.formBuilder.group (
-  //   {
-  //     newPassword: new FormControl('', 
-  //     [
-  //       Validators.minLength(5),
-  //       Validators.required,
-  //       Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
-  //     ],
-  //   ), 
-  //     retypePassword: new FormControl('',Validators.required)
-  //   }, 
-  //   {
-  //     validators: PasswordValidator.isMatched
-  //   });
-  // }
-
   // validation method
   isValid (fieldName: string, validationType: string): boolean  {
     const fieldControl = this.register_form.get(fieldName);
@@ -153,14 +127,6 @@ export class RegisterPage implements OnInit {
     return !!fieldControl?.hasError(validationType) && 
           (fieldControl?.dirty || fieldControl?.touched);
   }
-
-  // get matchingPasswords() {
-  //   return this.register_form.get('matching_passwords');
-  // }
-
-  // get newPasswordControl() {
-  //   return this.register_form.get('newPassword');
-  // }
 
   get retypePasswordControl() {
     return this.register_form.get('retypePassword');
@@ -176,6 +142,8 @@ export class RegisterPage implements OnInit {
     console.log(this.register_form.value);
 
     // todo: save to db
+    
+
 
     // todo: navigate to login page
     this.navCtrl.navigateRoot('login');
