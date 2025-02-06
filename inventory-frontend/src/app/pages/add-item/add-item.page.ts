@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { IonSelect } from '@ionic/angular';
+import { IonTextarea } from '@ionic/angular/standalone';
 import { ImageUploadComponentComponent } from 'src/app/components/image-upload-component/image-upload-component.component';
 import { ItemCategoriesService } from 'src/app/services/item-categories.service';
 import { ItemStatusService } from 'src/app/services/item-status.service';
@@ -18,6 +19,7 @@ export class AddItemPage implements OnInit {
   // reset drop down val to default after click cancel button
   @ViewChild('selectOpt') selectOpt!: IonSelect;
   @ViewChild('statusOpt') statusOpt!: IonSelect;
+  @ViewChild('describe') describe!: IonTextarea;
   // clear img preview 
   @ViewChild(ImageUploadComponentComponent) itemImg!: ImageUploadComponentComponent;
 
@@ -53,17 +55,20 @@ export class AddItemPage implements OnInit {
   // clear input val
   clearItemForm() {
     const form = document.querySelector('form') as HTMLFormElement;
+    console.log(form);
 
     if (form) {
       // reset form 
       form.reset();
 
-      // clear drop down value
+      // clear other values
+      this.describe.value = '';
       this.selectOpt.value = null;
       this.statusOpt.value = [];
       this.itemImg.resetUpload();
 
-      console.log("clear form");
+      if (form === null)
+        console.log("clear form sucessfully");
     }
   }
 
@@ -74,18 +79,30 @@ export class AddItemPage implements OnInit {
 
     // get add item form html page
     const form = document.querySelector('form') as HTMLFormElement;
-    console.log(form);
 
     // if form exist, get all input vals from form 
     if (form) {
 
       const formData = new FormData(form);
-      const formDataObject = {};
+      const formDataObject: { [key: string]: string | File | number | boolean } = {};
 
-      // formData.forEach((key, value)) => {};
+      // process each form field
+      formData.forEach((value, key) => {
+        if (value instanceof File) {
+          formDataObject[key] = value;
+          // convert image file to base64
+          
+        }
+        else {
+          // add data to form object
+          formDataObject[key] = value;
+        }
+        
+      });
 
+      // todo: save to db
+      console.log(formDataObject);
 
-      // save to db
       
     }
 
