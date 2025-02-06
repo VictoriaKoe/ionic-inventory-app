@@ -20,23 +20,25 @@
 
 //   ngOnInit() {
 
-//     // dummy data
-//     this.itemData = [
-//       {
-//         itemId: 1,
-//         item_name: 'Lightstick',
-//         cat_name: 'Official KPOP Merchandise',
-//         item_status: ['Wear']
-//       },
-
-//       {
-//         itemId: 2,
-//         item_name: 'Photocard',
-//         cat_name: 'Official KPOP Merchandise',
-//         item_status: ['New', 'Ordered']
-//       }
-
-//     ];
+    // // dummy data
+    // this.itemData = [
+    //     {
+    //       itemId: 1,
+    //       item_name: 'Lightstick',
+    //       cat_name: 'Official KPOP Merchandise',
+    //       item_status: ['Wear'],
+    //       item_image: "assets/item/army_bomb"
+    //     },
+  
+    //     {
+    //       itemId: 2,
+    //       item_name: 'Photocard',
+    //       cat_name: 'Official KPOP Merchandise',
+    //       item_status: ['New', 'Ordered'],
+    //       item_image: "assets/item/photocard1"
+    //     }
+  
+    //   ];
 
 //     this.categoryName = this.itemData[0].cat_name;
 
