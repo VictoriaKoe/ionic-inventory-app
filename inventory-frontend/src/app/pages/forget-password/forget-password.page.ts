@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginAuthService } from 'src/app/services/login-auth.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -10,17 +12,19 @@ export class ForgetPasswordPage implements OnInit {
 
   recoverEmail: string = '';
 
-  constructor() { }
+  constructor(private authService: LoginAuthService, private notiService: NotificationService) { }
 
   ngOnInit() {
   }
 
   // action after clicking submit button
-  onSubmit(){
+  async onSubmit(){
     console.log(this.recoverEmail);
 
     // todo: send user email to db to request pass recovering
-    
+   this.authService.resetPassword(this.recoverEmail); 
+   this.notiService.showSuccess("Email is successfully sent to the registered email.");
+
   }
 
 }
