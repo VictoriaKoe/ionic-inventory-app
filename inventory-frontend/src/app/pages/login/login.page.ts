@@ -31,6 +31,7 @@ export class LoginPage implements OnInit {
   // action after clicking sign in button
   async onSubmit(){
     console.log(this.userEmail, this.password);
+    
     // todo: validate from db
     const loading = await this.loadingCtrl.create({
       message: "Loading",
