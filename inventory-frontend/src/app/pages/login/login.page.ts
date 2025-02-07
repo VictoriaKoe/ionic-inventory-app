@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 // import router
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { LoginAuthService } from 'src/app/services/login-auth.service';
+import { NotificationService } from 'src/app/services/notification.service';
+
 
 @Component({
   selector: 'app-login',
@@ -13,27 +16,63 @@ import { LoginAuthService } from 'src/app/services/login-auth.service';
 export class LoginPage implements OnInit {
 
   // initialise default val
-  userEmail: String = '';
-  password: String = '';
+  userEmail: string = '';
+  password: string = '';
 
-  constructor(private router: Router, private loginAuthService: LoginAuthService) {}
+  constructor(
+    private router: Router,
+    private loginAuthService: LoginAuthService,
+    private notiService: NotificationService,
+    private loadingCtrl: LoadingController
+  ) {}
 
   ngOnInit() {}
 
   // action after clicking sign in button
-  onSubmit(){
+  async onSubmit(){
     console.log(this.userEmail, this.password);
-
-    const userLoginData = {
-      email: this.userEmail,
-      password: this.password
-    };
-
     // todo: validate from db
-    this.loginAuthService.login(userLoginData);
-    
-    // route to main page
-    this.router.navigate(['/main']);
+    const loading = await this.loadingCtrl.create({
+      message: "Loading",
+      duration: 1000,
+      spinner: "circles"
+    });
+    await loading.present();
+
+    let message = '';
+
+    const user = await this.loginAuthService.login(this.userEmail, this.password)
+    .catch(async (error) => { // fail to login 
+        const errorCode = error.code;
+        console.log(errorCode);
+
+        switch (errorCode) {
+          case 'auth/invalid-credential':
+            message = 'Invalid email/password. Please try again.';
+            break;
+          case 'auth/user-not-found':
+            message = 'User not found. Please check your registered email.';
+            break;
+          case 'auth/invalid-email':
+            message = 'Invalid email format/missing email. Please try again';
+            break;
+          case 'auth/missing-password':
+            message = 'Please enter password.';
+            break;
+          default:
+            message = 'Login failed. Please try again.';
+        }
+        
+        await this.notiService.showError(message);
+    });
+  
+    // user valid 
+    if (user) {
+      loading.dismiss();
+      await this.notiService.showSuccess('Login successful');
+        // route to main page
+        this.router.navigate(['/main']);
+    }
   }
 
   // route to register form
