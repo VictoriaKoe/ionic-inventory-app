@@ -7,6 +7,9 @@ import { NavController } from '@ionic/angular';
 // custom validator 
 import { UsernameValidator } from '../../validators/username_validator';
 import { PasswordValidator } from '../..//validators/password_validator';
+import { LoadingController } from '@ionic/angular/standalone';
+import { DataServiceService } from 'src/app/services/data-service.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +20,6 @@ import { PasswordValidator } from '../..//validators/password_validator';
 export class RegisterPage implements OnInit {
 
   register_form: FormGroup;
-  // connect db
 
 
   // validation message 
@@ -58,9 +60,14 @@ export class RegisterPage implements OnInit {
   };
 
   // initialise val
-  constructor(private navCtrl: NavController, private formBuilder: FormBuilder) { 
+  constructor(
+    private navCtrl: NavController, 
+    private formBuilder: FormBuilder,
+    private loadingCtrl: LoadingController,
+    private userService: DataServiceService,
+    private notiService: NotificationService
+  ) { 
     this.formBuilder = formBuilder;
-    // this.matching_password_group = this.initialisePassword();
     this.register_form = this.initialiseRegisterForm();
   }
 
@@ -137,16 +144,40 @@ export class RegisterPage implements OnInit {
            (this.retypePasswordControl?.dirty || this.retypePasswordControl?.touched);
   }
 
-  // submit register form 
-  onSubmit(){
+  // submit user register form 
+  async onSubmit(){
     console.log(this.register_form.value);
 
-    // todo: save to db
+    // check form pass the validation test 
+    if (this.register_form.valid){
+      const loading = await this.loadingCtrl.create({
+        message: "Creating account",
+        duration: 1000,
+        spinner: "circles"
+      });
+      
+      await loading.present();
+  
+      // todo: save to db
+      
+      // create user 
+      const response = await this.userService.saveUserData(this.register_form.value)
+      // observable to wrap req and get access to response
+      response.subscribe(
+        async responseData => {
+          console.log(responseData);
+          await loading.dismiss();
+          this.notiService.showSuccess('Registration successful');
+        }
+      );
+  
+      // todo: navigate to login page
+      this.navCtrl.navigateRoot('login');
+    }
+
     
 
-
-    // todo: navigate to login page
-    this.navCtrl.navigateRoot('login');
+    
   }
 
 }
