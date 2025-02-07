@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-// import * as firebase from '@angular/fire';
+import {AngularFireAuth} from '@angular/fire/compat/auth';
+import { NavController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -12,35 +13,19 @@ export class LoginAuthService {
   private email: string = '';
   private password: any;
 
-  constructor() {}
+  constructor(
+    private ngFireAuth: AngularFireAuth,
+    private navCtrl: NavController
+  ) {}
 
   // user login
-  login(userData: {}) {
+  async login(userEmail: string, password: string) {
     
-    this.email, this.password = userData;
+    this.email = userEmail;
+    this.password = password;
     
-     // valid user 
-     this.isAuthenticated = true;
-
     // Firebase authentication
-    // firebase.auth().signInWithEmailAndPassword(email, password)
-    // .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     console.log('User signed in:', user);
-    //     // You can redirect the user to another page here, if needed
-    //     // Redirect the user to another page (e.g., "dashboard.html")
-    //     localStorage.setItem('email', email);
-    //     window.location.href = "index.html";
-    // })
-    // .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log('Error:', errorCode, errorMessage);
-
-    // Display the error message in the login container
-
-    // });
+    return this.ngFireAuth.signInWithEmailAndPassword(this.email, this.password)
   }
 
   // check user is logged in
@@ -54,10 +39,31 @@ export class LoginAuthService {
   }
 
   // user logout
-  logout(): boolean{
+  async logout() {
     // user logout
     this.isAuthenticated = false;
-    return this.isAuthenticated;
+    
+    await this.ngFireAuth.signOut()
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log('Error:', errorCode, errorMessage);  
+    });
+
+    this.email, this.password = '';
+    console.log(this.email, this.password);
+
+    // return to login page after user logout
+    this.navCtrl.navigateRoot('/login');
+  }
+
+  // forget password
+  async resetPassword(recoverEmail: string) {
+    // send email request from firebase to the registered email
+    await this.ngFireAuth.sendPasswordResetEmail(recoverEmail);
+
+    // send email then navigate back to login
+    this.navCtrl.navigateRoot(['/login']);
   }
 
 }

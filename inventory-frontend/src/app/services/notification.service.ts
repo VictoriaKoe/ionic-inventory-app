@@ -9,7 +9,7 @@ export class NotificationService {
   constructor(private toastCtrl: ToastController) { }
 
   async showSuccess(message: string) {
-    await this.showToast(message, 'success', 'checkmark-circle-outline');
+    await this.showToast(message, 'success', 'checkmark-circle-outline', 300);
   }
 
   async showError(message: string) {
@@ -24,7 +24,7 @@ export class NotificationService {
     message: string, 
     color: string = 'dark',
     icon: any,
-    duration: number = 2000,
+    duration: number = 1000,
     position: 'top' | 'bottom' | 'middle' = 'top'
   ) 
   
