@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 // import forms, validator
 import { Validators, FormBuilder, FormGroup, FormControl  } from '@angular/forms';
 // import navigation 
@@ -10,6 +10,9 @@ import { PasswordValidator } from '../..//validators/password_validator';
 import { LoadingController } from '@ionic/angular/standalone';
 import { DataServiceService } from 'src/app/services/data-service.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { LoginAuthService } from 'src/app/services/login-auth.service';
+import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
+import { Firestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +23,8 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class RegisterPage implements OnInit {
 
   register_form: FormGroup;
+  private authService = inject(LoginAuthService);
+  private fireStore = inject(Firestore);
 
 
   // validation message 
@@ -65,7 +70,9 @@ export class RegisterPage implements OnInit {
     private formBuilder: FormBuilder,
     private loadingCtrl: LoadingController,
     private userService: DataServiceService,
-    private notiService: NotificationService
+    private notiService: NotificationService,
+    // private authService: LoginAuthService,
+    // private fireStore: AngularFirestore,
   ) { 
     this.formBuilder = formBuilder;
     this.register_form = this.initialiseRegisterForm();
@@ -145,11 +152,11 @@ export class RegisterPage implements OnInit {
   }
 
   // submit user register form 
-  async onSubmit(){
+  async onSubmit() {
     console.log(this.register_form.value);
 
     // check form pass the validation test 
-    if (this.register_form.valid){
+    if (this.register_form.valid) {
       const loading = await this.loadingCtrl.create({
         message: "Creating account",
         duration: 1000,
@@ -160,24 +167,69 @@ export class RegisterPage implements OnInit {
   
       // todo: save to db
       
-      // create user 
-      const response = await this.userService.saveUserData(this.register_form.value)
-      // observable to wrap req and get access to response
-      response.subscribe(
-        async responseData => {
-          console.log(responseData);
-          await loading.dismiss();
-          this.notiService.showSuccess('Registration successful');
+      // create user
+      // save to auth and firestore
+      try {
+        const user = await this.authService.registerUser(this.register_form.value);
+
+        if (user.user) {
+          const userCredential = user.user;
+          console.log("new user is successfully registered: " + userCredential);
+
+          console.log("User id " + userCredential.uid);
+
+          // save to firestore
+          // create collection
+          const userRef = doc(this.fireStore, `users/${userCredential.uid}`)
+          
+          // add data to firestore
+          await setDoc(userRef, {
+            uid: userCredential.uid, // user unique id
+            username: this.register_form.value.newUsername,
+            name: this.register_form.value.newName,
+            email: this.register_form.value.newEmail,
+            password: this.register_form.value.newPassword,
+            terms: this.register_form.value.terms,
+            lastLoginAt: serverTimestamp(),
+            createdAt: serverTimestamp(),
+            pronoun: '',
+            avatarURL: ''
+          })
         }
-      );
-  
-      // todo: navigate to login page
-      this.navCtrl.navigateRoot('login');
+
+        console.log("User data successfully written to Firestore");
+        // toast msg when success register
+        await this.notiService.showSuccess('Registration successful');
+        // todo: navigate to login page
+        this.navCtrl.navigateRoot('login');
+      }
+      catch (error: any) {
+          let message = '';
+          const errorCode = error.code;
+          console.log(errorCode);
+
+          switch (errorCode) {
+            case 'auth/email-already-exists':
+              message = 'This email is already registered. Please provide a new one.';
+              break;
+            default:
+              message = 'Registration failed. Please try again.';
+          }
+          
+          await this.notiService.showError(message);
+        }
+
+        // save to realtime database
+        const response = await this.userService.saveUserData(this.register_form.value)
+        // observable to wrap req and get access to response
+        response.subscribe(
+          async responseData => {
+            console.log(responseData);
+          }
+        );
+
+        await loading.dismiss();
+        // this.notiService.showSuccess('Registration successful');
+      } 
     }
-
-    
-
-    
-  }
-
-}
+  }    

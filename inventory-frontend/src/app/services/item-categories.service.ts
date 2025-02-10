@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class ItemCategoriesService {
   private categoryList: any[] = [];
   private categoryName: string = '';
 
-  constructor() { 
+  constructor(private firestore: Firestore) { 
     
     // dummy data
     this.categoryList = [
@@ -68,5 +69,4 @@ export class ItemCategoriesService {
   setCategoryName(newCatName: string): void {
     this.categoryName = newCatName;
   }
-
 }
