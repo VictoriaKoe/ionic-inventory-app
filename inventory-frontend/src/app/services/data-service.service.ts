@@ -13,7 +13,7 @@ export class DataServiceService {
   private baseURL = environment.firebaseConfig.databaseURL;
   private apiKey = environment.firebaseConfig.apiKey;
 
-  // Save user data to Firebase
+  // Save user data to realtime Firebase
   // send HTTP request
   saveUserData(userData: any) {
     // url to save data 
@@ -27,7 +27,12 @@ export class DataServiceService {
     return this.http.get(url);
   }
 
+  // update user data
+  updateUserData(userData: any){
+    
+  }
   
+
 
 }
 
