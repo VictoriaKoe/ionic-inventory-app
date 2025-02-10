@@ -76,5 +76,28 @@
 //     this.isAuthenticated = newAuth;
 //   }
 
+ // register user
+//  async registerUser(registerUser: any) {
+
+//     this.email = registerUser.newEmail;
+//     this.password = registerUser.newPassword;
+
+//     console.log(this.email, this.password);
+
+//     return this.ngFireAuth.createUserWithEmailAndPassword(this.email, this.password)
+//   //   .then ((userCredential) => {
+//   //     // register successful
+//   //     const user = userCredential.user;
+//   //     console.log('New registered user:', user);
+//   //   })
+//   //   .catch((error) => {
+//   //     const errorCode = error.code;
+//   //     const errorMessage = error.message;
+//   //     console.log('Error:', errorCode, errorMessage);
+//   // });
+
+//   }
+
+
 
 // }
