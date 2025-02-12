@@ -12,7 +12,7 @@
       <ng-container [ngSwitch]="!!name"> 
 
         <!-- When name has a value -->
-        <span *ngSwitchCase="true">{{name}}</span>
+        <span *ngSwitchCase="true" style = "text-transform: capitalize;">{{name}}</span>
         
         <!-- When name is null/undefined/empty -->
         <ion-img 

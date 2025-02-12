@@ -39,13 +39,13 @@
                 #selectOpt
                 name = "item_category" 
                 interface = "popover" 
-                [value] = "(itemCategoryArray.length > 0 ? itemCategoryArray[0] : '') || itemCategoryArray[0].cat_name"
+                [value] = "(itemCategoryArray.length > 0 ? itemCategoryArray[0] : '')"
             >
                 <ion-select-option 
                     *ngFor = "let category of itemCategoryArray" 
                     [value] = "category.cat_name"
                 >
-                    {{category.cat_name}}
+                    {{category.cat_name.charAt(0).toUpperCase() + category.cat_name.slice(1)}}
                 </ion-select-option>
             </ion-select>
         </ion-item>
