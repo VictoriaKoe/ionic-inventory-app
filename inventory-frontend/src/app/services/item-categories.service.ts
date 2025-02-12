@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { doc, Firestore, setDoc } from '@angular/fire/firestore';
+import {Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -9,40 +9,14 @@ export class ItemCategoriesService {
   private categoryList: any[] = [];
   private categoryName: string = '';
 
-  constructor(private firestore: Firestore) { 
-    
-    // dummy data
-    this.categoryList = [
-      {
-        cat_id: this.generateId(),
-        cat_name: "Books"
-      },
+  constructor(private firestore: AngularFirestore) { 
 
-      {
-        cat_id: this.generateId(),
-        cat_name: "Magazines"
-      },
-
-      {
-        cat_id: this.generateId(),
-        cat_name: "Official Character Merchandises"
-      },
-
-      {
-        cat_id: this.generateId(),
-        cat_name: "Official KPOP Merchandises"
-      },
-
-      {
-        cat_id: this.generateId(),
-        cat_name: "Fanmade Merchandises"
-      }
-    ];
-  }
-
-  // dummy function to generate id
-  generateId() {
-    return Math.floor(Math.random() * 1000);
+    // get category from database
+    this.firestore.collection("categories").get().subscribe((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        this.categoryList.push(doc.data());
+      });
+    })
   }
 
   // get category list
@@ -69,4 +43,9 @@ export class ItemCategoriesService {
   setCategoryName(newCatName: string): void {
     this.categoryName = newCatName;
   }
+
 }
+
+
+
+
