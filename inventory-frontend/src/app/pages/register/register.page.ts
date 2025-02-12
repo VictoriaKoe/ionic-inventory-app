@@ -70,9 +70,7 @@ export class RegisterPage implements OnInit {
     private formBuilder: FormBuilder,
     private loadingCtrl: LoadingController,
     private userService: DataServiceService,
-    private notiService: NotificationService,
-    // private authService: LoginAuthService,
-    // private fireStore: AngularFirestore,
+    private notiService: NotificationService
   ) { 
     this.formBuilder = formBuilder;
     this.register_form = this.initialiseRegisterForm();
