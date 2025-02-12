@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, inject, OnInit, ViewChild} from '@angular/core';
 import { IonSelect } from '@ionic/angular';
 import { IonTextarea } from '@ionic/angular/standalone';
 import { ImageUploadComponentComponent } from 'src/app/components/image-upload-component/image-upload-component.component';
 import { ItemCategoriesService } from 'src/app/services/item-categories.service';
 import { ItemStatusService } from 'src/app/services/item-status.service';
+import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
+import { Firestore } from '@angular/fire/firestore';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-add-item',
@@ -35,10 +38,12 @@ export class AddItemPage implements OnInit {
 
   // store data
   jsonData: any;
+  private firestore = inject(Firestore);
 
   constructor(
     private itemStatus: ItemStatusService, 
-    private categoryData: ItemCategoriesService
+    private categoryData: ItemCategoriesService,
+     private notiService: NotificationService
   ) { }
 
   ngOnInit() {
@@ -73,7 +78,7 @@ export class AddItemPage implements OnInit {
   }
 
   // todo: add item details to db 
-  addItemForm() {
+  async addItemForm() {
     console.log("invoke add item form");
     console.log("category: " + this.selectOpt.value, "status: " + this.statusOpt.value);
 
@@ -97,17 +102,29 @@ export class AddItemPage implements OnInit {
           // add data to form object
           formDataObject[key] = value;
         }
-        
       });
 
       // todo: save to db
-      console.log(formDataObject);
+      console.log(formDataObject); // item obj
 
+      // create item collection
+      const itemRef = doc(this.firestore, `items`);
+
+      // add data to firestore
+      await setDoc(itemRef, {
+       
+      })
+
+      console.log("Item is successfully save to Firestore");
       
+      // toast msg when success register
+      await this.notiService.showSuccess('Successfully Add Item');
     }
 
     else {
-      console.error("form not exists.")
+      console.error("form not exists.");
+
+      await this.notiService.showError("Uncessfully Add");
     }
 
   }
