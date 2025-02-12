@@ -5,6 +5,8 @@ import { LoadingController } from '@ionic/angular';
 import { LoginAuthService } from 'src/app/services/login-auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
+import { doc, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { Firestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,8 @@ export class LoginPage implements OnInit {
     private router: Router,
     private loginAuthService: LoginAuthService,
     private notiService: NotificationService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private firestore: Firestore
   ) {}
 
   ngOnInit() {}
@@ -69,6 +72,15 @@ export class LoginPage implements OnInit {
   
     // user valid 
     if (user) {
+
+      if(user.user){
+        const userCredential = user.user;
+        const userRef = doc(this.firestore, `users/${userCredential.uid}`)
+
+        // update login time
+        await updateDoc(userRef, {lastLoginAt: serverTimestamp()})
+      } 
+      
       loading.dismiss();
       await this.notiService.showSuccess('Login successful');
         // route to main page
