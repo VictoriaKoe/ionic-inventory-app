@@ -1,8 +1,8 @@
 <app-navigation-bar2 name = "Profile"></app-navigation-bar2>
 
-<ion-content [fullscreen]="true" class="ion-margin-top">
+<ion-content [fullscreen]="true" class="ion-margin">
   
-  <div class = "user-container">
+  <div class = "user-container"  *ngFor = "let user of userData; let i = index">
 
     <!-- todo: profile icon-->
     <div class = "profile"> 
@@ -49,7 +49,7 @@
         <div>
           <ion-label>Username</ion-label>
           <!-- render username -->
-          <p> {{username}}</p>
+          <p> {{user.username || username}}</p>
         </div>
          
         <br/>
@@ -58,28 +58,28 @@
         <div>
           <ion-label>Name</ion-label>
           <!-- render email -->
-          <p> {{name}}</p>
+          <p> {{user.name || name}}</p>
         </div>
 
         <br/>
 
         <!-- tbc: pronoun -->
-        <div>
-          <ion-label>Pronoun</ion-label>
+        <!-- <div>
+          <ion-label>Pronoun</ion-label> -->
           <!-- default no val -->
           <!-- edit pronoun/gender -->
-          <div style = "justify-content: space-between; padding-left: 2px;">
-            <p> {{pronoun}}</p>
+          <!-- <div style = "justify-content: space-between; padding-left: 2px;">
+            <p> {{user.pronoun || pronoun}}</p>
           </div>
         </div>
 
-        <br/>
+        <br/> -->
 
         <!-- email -->
         <div>
           <ion-label>Personal Email</ion-label>
           <!-- render email -->
-          <p> {{email}}</p>
+          <p> {{user.email || email}}</p>
         </div>
 
         <br/>
@@ -91,7 +91,7 @@
           
           <div style = "justify-content: space-between; display: flex; " >
             <!-- render password -->
-            <p class="ion-no-margin"> {{showPassword ? password : maskPassword(password)}} </p>
+            <p class="ion-no-margin"> {{showPassword ? user.password : maskPassword(user.password )}} </p>
             <span
               (click)="toggleVisibilityPassword()"
               style = "padding-right: 10px; color: #932ad9; cursor: pointer;"

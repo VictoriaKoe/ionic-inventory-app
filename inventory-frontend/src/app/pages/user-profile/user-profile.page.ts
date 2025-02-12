@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { UserProfileModalComponent } from 'src/app/components/user-profile-modal/user-profile-modal.component';
+import { UserViewService } from 'src/app/services/user-view.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -19,6 +20,7 @@ export class UserProfilePage implements OnInit {
   email: string = 'vic@gmail.com';
   password: string = '12345';
   name: string = "Rui En";
+  userData: any[] = [];
 
   // default val 
   pronoun: any = '-';
@@ -27,17 +29,20 @@ export class UserProfilePage implements OnInit {
   // toogle pass
   showPassword: boolean = false;
 
-  constructor(private router: Router, private popoverCtrl: PopoverController, private modalCtrl: ModalController) { }
+  constructor(
+    private router: Router, 
+    private popoverCtrl: PopoverController, 
+    private modalCtrl: ModalController,
+    private userViewService: UserViewService,
+  ) {}
 
   ngOnInit() {
 
-    // this.pronoun = [
-    //   "Male",
-    //   "Female"
-    // ];
-
+    // reset user data array to prevent previous data save in the var
+    this.userViewService.clearUserData(); 
     // get actual data from database
-
+    this.userData = this.userViewService.getUserDataArray();
+    console.log(this.userData);
 
   }
 
@@ -49,7 +54,6 @@ export class UserProfilePage implements OnInit {
 
   // toogle pasword visibilty
   toggleVisibilityPassword () {
-    
     // toogle password visibility
     this.showPassword = !this.showPassword;
   }
@@ -80,6 +84,8 @@ export class UserProfilePage implements OnInit {
       this.profilePhoto = data.photo;
 
       // todo: save to db
+      
+      // get user ref 
       
     }
   }
