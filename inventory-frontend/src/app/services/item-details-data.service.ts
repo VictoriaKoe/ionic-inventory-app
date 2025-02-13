@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,10 @@ export class ItemDetailsDataService {
 
   private itemDetails: any[] = [];
 
-  constructor() { }
+  constructor(
+    private firestore: Firestore,
+    
+  ) { }
 
   // get item details
    getItemDetails() {

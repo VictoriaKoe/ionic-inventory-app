@@ -48,7 +48,7 @@ export class CategoryItemsPage implements OnInit {
     this.categoryName = this.categoryData.getCategoryName();
 
     // category item data 
-
+    
   }
 
   // view item details

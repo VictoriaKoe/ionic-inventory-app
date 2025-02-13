@@ -19,7 +19,7 @@ export class ImageUploadComponentComponent implements OnInit {
 
   // upload photo
   barStatus: boolean = false;
-  selectedImageUrl: string | ArrayBuffer | null = null;
+  selectedImageUrl: any;
   selectedFile: any;
 
   constructor() { }
@@ -54,6 +54,7 @@ export class ImageUploadComponentComponent implements OnInit {
         // decode img file to base64 str
         this.selectedFile = e.target.result;
         this.selectedImageUrl = e.target.result;
+        console.log(this.selectedImageUrl);
       };
 
       // handle file reading failures
@@ -108,5 +109,7 @@ export class ImageUploadComponentComponent implements OnInit {
     this.selectedImageUrl = null;
   }
 
-
+  getImageURL() {
+    return this.selectedImageUrl;
+  }
 }

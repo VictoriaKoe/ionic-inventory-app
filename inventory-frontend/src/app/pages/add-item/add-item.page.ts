@@ -4,9 +4,8 @@ import { IonTextarea } from '@ionic/angular/standalone';
 import { ImageUploadComponentComponent } from 'src/app/components/image-upload-component/image-upload-component.component';
 import { ItemCategoriesService } from 'src/app/services/item-categories.service';
 import { ItemStatusService } from 'src/app/services/item-status.service';
-import { doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { Firestore } from '@angular/fire/firestore';
-import { NotificationService } from 'src/app/services/notification.service';
+import { ItemFormService } from 'src/app/services/item-form.service';
 
 @Component({
   selector: 'app-add-item',
@@ -43,7 +42,7 @@ export class AddItemPage implements OnInit {
   constructor(
     private itemStatus: ItemStatusService, 
     private categoryData: ItemCategoriesService,
-     private notiService: NotificationService
+    private itemFormService: ItemFormService,
   ) { }
 
   ngOnInit() {
@@ -72,14 +71,17 @@ export class AddItemPage implements OnInit {
       this.statusOpt.value = [];
       this.itemImg.resetUpload();
 
-      if (form === null)
+      // clear all form
+      if (form === null) {
         console.log("clear form sucessfully");
+      }
     }
   }
 
   // todo: add item details to db 
   async addItemForm() {
     console.log("invoke add item form");
+    // test tag value
     console.log("category: " + this.selectOpt.value, "status: " + this.statusOpt.value);
 
     // get add item form html page
@@ -94,9 +96,11 @@ export class AddItemPage implements OnInit {
       // process each form field
       formData.forEach((value, key) => {
         if (value instanceof File) {
-          formDataObject[key] = value;
+          // formDataObject[key] = value;
           // convert image file to base64
-          
+          const image = this.itemImg.getImageURL();
+          console.log(image);
+          formDataObject[key] = image;
         }
         else {
           // add data to form object
@@ -107,24 +111,12 @@ export class AddItemPage implements OnInit {
       // todo: save to db
       console.log(formDataObject); // item obj
 
-      // create item collection
-      const itemRef = doc(this.firestore, `items`);
-
-      // add data to firestore
-      await setDoc(itemRef, {
-       
-      })
-
-      console.log("Item is successfully save to Firestore");
-      
-      // toast msg when success register
-      await this.notiService.showSuccess('Successfully Add Item');
+      // save item data to firestore
+      this.itemFormService.addItemToDB(formDataObject);
     }
 
     else {
       console.error("form not exists.");
-
-      await this.notiService.showError("Uncessfully Add");
     }
 
   }

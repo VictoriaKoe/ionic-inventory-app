@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-
+import { ItemFormService } from 'src/app/services/item-form.service';
+import { LoginAuthService } from 'src/app/services/login-auth.service';
 
 @Component({
   selector: 'app-item-view',
@@ -17,35 +18,29 @@ export class ItemViewPage implements OnInit {
   // search/filter item after enter search term 
   queryItemResult: any[] = [];
 
-  constructor(private navCtrl: NavController) { }
+  userID: any;
+
+  constructor(
+    private navCtrl: NavController,
+    private itemFormService: ItemFormService,
+    private loginAuth: LoginAuthService
+  ) { }
 
   ngOnInit() {
 
-    // dummy data
-    this.itemData = [
-      {
-        itemId: 1,
-        item_name: 'Acer360',
-        cat_name: 'Laptop',
-        item_status: ['Broken']
-      },
+    // get user id
+    this.loginAuth.getCurrentUser().then((user: { uid: any; }) => {
+      this.userID = user?.uid;
+    })
 
-      {
-        itemId: 2,
-        item_name: 'Lightstick',
-        cat_name: 'Official KPOP Merchandise',
-        item_status: ['Wear']
-      },
 
-      {
-        itemId: 3,
-        item_name: 'photocard',
-        cat_name: 'Official KPOP Merchandise',
-        item_status: ['New', 'Ordered']
-      }
-    ];
 
-    // get item data from db  
+    // get all saved items from db  
+   this.itemFormService.getItemList(this.userID).subscribe(res =>
+    {
+      
+    }
+   )
     
     // search bar query item to filter
     this.queryItemResult = this.itemData;
@@ -67,6 +62,7 @@ export class ItemViewPage implements OnInit {
 
   // handle search input
   searchInput(event: Event) {
+    this.queryItemResult = [];
     // target input
     const target = event.target as HTMLIonSearchbarElement;
     const query = target.value?.toLowerCase() || '';
@@ -75,11 +71,11 @@ export class ItemViewPage implements OnInit {
       (item) => {
         // some - check any arr elem pass test, ret true/false
         // check searched item exist in item data
-        return Object.values(item).some(value =>
+        return Object.values(item).some((value) => 
           value && value.toString().toLowerCase().includes(query) // search condi
         );
       }
-    );
+    )
 
     console.log(this.queryItemResult);
   }
