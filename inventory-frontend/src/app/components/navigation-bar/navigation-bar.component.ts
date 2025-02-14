@@ -7,9 +7,8 @@ import {
   IonButton, 
   IonIcon,
   IonImg,
-  IonTitle
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 import { UserProfilePopoverComponent } from '../user-profile-popover/user-profile-popover.component';
 import { PopoverController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -27,8 +26,7 @@ import { CommonModule } from '@angular/common';
     IonMenuButton,
     IonIcon,
     CommonModule,
-    IonImg,
-    IonTitle
+    IonImg
   ],
 })
 export class NavigationBarComponent implements OnInit {

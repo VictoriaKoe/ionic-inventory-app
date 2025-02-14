@@ -12,7 +12,6 @@ export class AppComponent implements OnInit {
   username: string = "Vic";
   profilePhoto: string | null = "https://ionicframework.com/docs/img/demos/avatar.svg";
 
-
   public appPages = [
     { title: 'Home', url: '/main/home', icon: 'home' },
     { title: 'Items', url: '/main/items', icon: 'cube' },
@@ -21,7 +20,6 @@ export class AppComponent implements OnInit {
     // empty pages
     { title: 'Terms Policy', url: 'terms-policy', icon: 'document-text'},
     { title: 'Settings', url: 'settings', icon: 'settings'}
-    // order
   ];
 
   constructor() {}
@@ -29,7 +27,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
     // get profile from db (photo & username)
-    
   }
 
 }
