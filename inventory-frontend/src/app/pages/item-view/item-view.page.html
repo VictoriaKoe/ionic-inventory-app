@@ -38,29 +38,29 @@
     <ion-row>
 
       <!-- 1st col -->
-      <ion-col size = "6" *ngFor = "let item of queryItemResult; let i = index">
+      <ion-col size = "12" *ngFor = "let item of queryItemResult; let i = index">
         
         <!-- todo: change to actual item data -->
         <ion-card class = "item-card" (click) = "viewItemDetails(item)">
           <!-- item img -->
-          <img
-            alt = "item1" 
-            src = {{item.item_image}} 
-            style = "height: 150px; padding: 0px 10px;"
-          />
+          <div class="image-container">
+            <img
+              alt="item1" 
+              src="{{item.item_image}}" 
+              style="height: 70%;"
+            />
+          </div>
           
-          <ion-card-header class="ion-no-margin">
-            <!-- item name -->
-            <ion-card-title 
-              style = "font-size: 1.25rem; font-weight: 500;"
-              class="ion-no-margin"
-            > 
-              {{item.item_name}} 
-            </ion-card-title>
-          </ion-card-header>
-    
           <!-- simple item details -->
-          <ion-card-content class="ion-no-margin">
+           <!-- item name -->
+          <ion-card-content class="ion-padding-horizontal">
+            
+            <h3 style = "font-size: 1.25rem; font-weight: 500; color: black;">
+              {{item.item_name}} 
+            </h3>
+
+            <br/>
+
             <!-- category -->
             <p style = "font-weight: 300; "> 
               <span style = "font-size: 0.9rem;">Category: </span> <br/> {{item.cat_name}} 

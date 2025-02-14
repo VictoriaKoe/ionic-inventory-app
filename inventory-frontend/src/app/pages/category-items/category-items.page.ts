@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ItemCategoriesService } from 'src/app/services/item-categories.service';
+import { ItemDetailsDataService } from 'src/app/services/item-details-data.service';
+import { LoginAuthService } from 'src/app/services/login-auth.service';
 
 @Component({
   selector: 'app-category-items',
@@ -17,7 +19,11 @@ export class CategoryItemsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private categoryData: ItemCategoriesService 
+    private categoryData: ItemCategoriesService,
+    private itemDetailsService: ItemDetailsDataService,
+    private loginAuthService: LoginAuthService,
+    private itemCategoryService: ItemCategoriesService
+
   ) {}
 
   ngOnInit() {
@@ -47,14 +53,26 @@ export class CategoryItemsPage implements OnInit {
     // category name
     this.categoryName = this.categoryData.getCategoryName();
 
-    // category item data 
-    
+    // check current user
+    this.loginAuthService.getCurrentUser().then((user: { uid: any; }) => {
+      const userID = user?.uid;
+      console.log(userID);
+
+      // category item data 
+      this.itemCategoryService.getItemByCategory(userID, this.categoryName).subscribe(
+        res => {
+          this.itemData = res;
+          console.log(this.itemData);
+        }
+      )}
+    )
   }
 
   // view item details
   viewItemDetails(item: any){
     // todo: save specific item details to db to render on item details page
-    
+    this.itemDetailsService.clearItemDetails();
+    this.itemDetailsService.setItemDetails(item);
     this.navCtrl.navigateForward('item-details');
   }
 

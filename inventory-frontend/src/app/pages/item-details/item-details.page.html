@@ -9,7 +9,7 @@
     <!-- todo: render actual item image -->
     <div class = "custom_item_image">
       <ion-img
-        [src] = itemImage
+        src = {{item.item_image}}
         alt = "item_details"
         style = "height: 200px;"
       ></ion-img>
@@ -27,7 +27,7 @@
 
       <!-- item description -->
       <ion-item>
-        <p>Item Description: <br/> {{item.item_description}}</p>
+        <p>Item Description: <br/> {{item.description}}</p>
       </ion-item>
 
       <!-- value -->
@@ -37,7 +37,7 @@
 
       <!-- origin -->
       <ion-item>
-        <p>Item Origin: <br/> {{item.item_origin}}</p>
+        <p>Item Origin: <br/> {{item.origin}}</p>
       </ion-item>
 
       <!-- category -->

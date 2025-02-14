@@ -15,13 +15,13 @@ export class CategoryPage implements OnInit {
 
   constructor(
     private navCtrl: NavController, 
-    private categoryData: ItemCategoriesService
+    private categoryService: ItemCategoriesService
   ) { }
 
   ngOnInit() {
     
     // get category data (lookup table) from db  
-    this.categoryList = this.categoryData.getCategoryList();
+    this.categoryList = this.categoryService.getCategoryList();
 
     // category icon (constant)
     this.categoryIconArray = ['book', 'newspaper', 'heart-circle', 'happy', 'sparkles']
@@ -31,7 +31,7 @@ export class CategoryPage implements OnInit {
   // navigate to specific category page
   navigateItemCategoryPage(categoryName: string) {
     // todo: set category name to render correct item of each cat when navigating
-    this.categoryData.setCategoryName(categoryName);
+    this.categoryService.setCategoryName(categoryName);
 
     // navigate to category item page
     this.navCtrl.navigateForward('category-items');

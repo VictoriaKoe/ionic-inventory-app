@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ItemDetailsDataService } from 'src/app/services/item-details-data.service';
 import { ItemFormService } from 'src/app/services/item-form.service';
 import { LoginAuthService } from 'src/app/services/login-auth.service';
 
@@ -23,27 +24,28 @@ export class ItemViewPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private itemFormService: ItemFormService,
-    private loginAuth: LoginAuthService
+    private loginAuth: LoginAuthService,
+    private itemDetailsService: ItemDetailsDataService
   ) { }
 
   ngOnInit() {
 
-    // get user id
+    // get current user id from firestore
     this.loginAuth.getCurrentUser().then((user: { uid: any; }) => {
       this.userID = user?.uid;
+      console.log(this.userID);
+
+      // get all saved items from db for the current user
+      this.itemFormService.getItemList(this.userID).subscribe(res =>
+        {
+          this.itemData = res;
+          console.log(this.itemData);
+
+          // search bar query item to filter
+          this.queryItemResult = this.itemData;
+        })
     })
 
-
-
-    // get all saved items from db  
-   this.itemFormService.getItemList(this.userID).subscribe(res =>
-    {
-      
-    }
-   )
-    
-    // search bar query item to filter
-    this.queryItemResult = this.itemData;
   }
 
   // toogle the search
@@ -88,8 +90,9 @@ export class ItemViewPage implements OnInit {
   // view item details
   viewItemDetails(item: any){
     // todo: save specific item details to db to render on item details page
-
+    this.itemDetailsService.clearItemDetails();
+    this.itemDetailsService.setItemDetails(item);
     this.navCtrl.navigateForward('item-details');
   }
-
+  
 }

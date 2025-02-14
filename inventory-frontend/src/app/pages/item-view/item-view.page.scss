@@ -32,14 +32,26 @@ ion-button {
 }
 
 .item-card {
-    height: 100%;
+    height: 250px;
     text-transform: capitalize;
+    justify-content: space-between;
+    display: flex;
+    gap: 10px;
 }
 
 ion-row {
     align-items: stretch;
     justify-content: space-between;
 }
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    height: 100%;
+    width: 60%;
+  }
 
 
 
