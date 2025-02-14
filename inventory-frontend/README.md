@@ -86,6 +86,7 @@ If <b>@angular/fire</b> can't be installed, remove node_modules directory and re
 Complete guide: \
 [@angular/fire](https://www.npmjs.com/package/@angular/fire)\
 [install angular fire](https://firebase.google.com/codelabs/firebase-web#4)
+[github angularfire](https://github.com/angular/angularfire?tab=readme-ov-file)
 
 ## Available Scripts
 
