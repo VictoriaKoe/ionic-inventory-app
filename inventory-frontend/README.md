@@ -27,7 +27,6 @@ npm install [--force]
 
 - Add `--force` flag if you encounter any dependency issues. 
 
-
 ## Ionic Environment Setup
 Complete guide: [ionic cli](https://ionicframework.com/docs/intro/cli)
 
@@ -51,6 +50,43 @@ ionic --version
 ionic serve
 ```
 
+## Firebase/AngularFire Setup
+This project requires to install Firebase and AngularFire to run the database. 
+
+1. Install Firebase:
+```bash
+npm install firebase
+```
+
+2. Install Angular Fire:
+```bash
+ng add @angular/fire
+```
+
+** If the above command cannot run, run the below: 
+```bash
+npm install @angular/fire 
+```
+
+3. After installing AngularFire, the prompt will display a list of features for the final setup of firebase.
+
+Select the following features with the arrow keys and space bar:\
+<b>
+Authentication\
+Firestore\
+Cloud Messaging\
+Cloud Storage
+</b>
+
+Press enter and follow the remaining prompts.
+
+**<b>Notes</b>: \
+If <b>@angular/fire</b> can't be installed, remove node_modules directory and reinstall again. 
+
+Complete guide: \
+[@angular/fire](https://www.npmjs.com/package/@angular/fire)\
+[install angular fire](https://firebase.google.com/codelabs/firebase-web#4)
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -70,9 +106,10 @@ Generate the app pages.
 `[schematic]` - type of feature (e.g. page, component, directive, service)\
 `[name]` - name/path of feature being generated
 
-Complete guide: [Ionic generte](https://ionicframework.com/docs/cli/commands/generate)
+Complete guide: [Ionic generate](https://ionicframework.com/docs/cli/commands/generate)
 
+### `ng test`
 
-
+Test the application. 
 
 
